@@ -1,6 +1,8 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS tokens CASCADE;
 DROP TABLE IF EXISTS verification_tokens CASCADE;
+DROP TABLE IF EXISTS event CASCADE;
+DROP TABLE IF EXISTS todo CASCADE;
 
 
 CREATE TABLE users (
@@ -32,8 +34,9 @@ CREATE TABLE event(
     event_description TEXT,
     date_time TIMESTAMP NOT NULL,
     duration INT,
+    reminder BOOLEAN NOT NULL DEFAULT true,
     user_id INT REFERENCES users(user_id) ON DELETE CASCADE
-)
+);
 
 CREATE TABLE todo(
     todo_id SERIAL PRIMARY KEY,
@@ -41,13 +44,5 @@ CREATE TABLE todo(
     date_time TIMESTAMP NOT NULL,
     is_finished BOOLEAN NOT NULL,
     user_id INT REFERENCES users(user_id) ON DELETE CASCADE
-)
-
-
-INSERT INTO users (first_name, last_name, email, username, password, is_verified)
-VALUES 
-    ('John', 'Doe', 'user1@example.com', 'user1', 'password1',true),
-    ('Jane', 'Smith', 'user2@example.com', 'user2', 'password2', true),
-    ('Mike', 'Johnson', 'user3@example.com', 'user3', 'password3',true),
-    ('Emily', 'Davis', 'user4@example.com', 'user4', 'password4',true);
+);
 
