@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS tokens CASCADE;
 DROP TABLE IF EXISTS verification_tokens CASCADE;
-DROP TABLE IF EXISTS event CASCADE;
-DROP TABLE IF EXISTS todo CASCADE;
+DROP TABLE IF EXISTS events CASCADE;
+DROP TABLE IF EXISTS todos CASCADE;
 
 
 CREATE TABLE users (
@@ -28,7 +28,7 @@ CREATE TABLE verification_tokens(
     token VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE event(
+CREATE TABLE events(
     event_id SERIAL PRIMARY KEY,
     event_title TEXT NOT NULL,
     event_description TEXT,
@@ -38,7 +38,7 @@ CREATE TABLE event(
     user_id INT REFERENCES users(user_id) ON DELETE CASCADE
 );
 
-CREATE TABLE todo(
+CREATE TABLE todos(
     todo_id SERIAL PRIMARY KEY,
     todo_title TEXT NOT NULL,
     date_time TIMESTAMP NOT NULL,

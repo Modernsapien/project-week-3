@@ -1,4 +1,7 @@
-export { default as About } from "./AboutPage";
-export { default as Shop } from "./ShopPage";
 export { default as Home } from "./HomePage";
-export { default as ShopItem } from "./ShopItem";
+export { default as Login } from "./Login";
+export { default as ProtectedRoute } from "./ProtectedRoute";
+export { default as Dashboard } from "./Dashboard";
+export { default as Calender } from "./Calender";
+export { default as Todo } from "./Todo";
+export { default as Pomodoro } from "./Pomodoro";
