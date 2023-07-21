@@ -1,0 +1,21 @@
+const express = require("express");
+const cors = require("cors");
+
+const userRoutes = require("./routers/userRoutes");
+
+const tokenRoutes = require("./routers/tokenRoutes");
+
+const api = express();
+
+api.use(cors());
+api.use(express.json());
+
+api.use("/user", userRoutes);
+
+api.use("/token", tokenRoutes);
+
+api.get("/", (req, res) => {
+  res.json({ message: "Server is running" });
+});
+
+module.exports = api;
