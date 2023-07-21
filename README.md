@@ -1,4 +1,5 @@
 # project-week-3
+
 project week
 
 appName is a productivity app designed to support students with their revision and study schedules. It offers a range of features, including a todo list, calendar, Pomodoro timer, and dark/night mode, to help users stay organized, focused, and motivated during their study sessions.
@@ -32,15 +33,28 @@ Image here
 To run appName locally, follow these steps:
 
 1. Clone the repository:
-git clone git@github.com:Modernsapien/project-week-3.git
+   git clone git@github.com:Modernsapien/project-week-3.git
 
 2. Install the required dependencies:
-cd server 
-npm install
+   cd server
+   npm install
 
 3. Start the development server:
-npm run setup-db
-npm run dev
+   npm run setup-db
+   npm run dev
+
+4. Install the required dependencies:
+   cd client
+   npm install
+
+5. Start the client server:
+   npm run dev
+
+6. create a .env file in backend folder
+
+7. create instance on ElephantSql and add to .env file 
+   DB_URL="yourLink"
+   
 
 The app should now be running on http://localhost:3000.
 
@@ -70,5 +84,3 @@ Contributions to appName are welcome! If you find any bugs or have suggestions f
 ## License
 
 This project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code. Attribution is appreciated but not required.
-
-
