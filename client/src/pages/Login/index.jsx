@@ -1,3 +1,4 @@
+import React from 'react'
 import { LoginForm } from "../../components";
 
 const Login = () => {
@@ -26,4 +27,8 @@ const Login = () => {
   )
 };
 
-export default Login;
+export default function index() {
+  return (
+    <div>index</div>
+  )
+}
