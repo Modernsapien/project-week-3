@@ -2,7 +2,7 @@
 
 project week
 
-appName is a productivity app designed to support students with their revision and study schedules. It offers a range of features, including a todo list, calendar, Pomodoro timer, and dark/night mode, to help users stay organized, focused, and motivated during their study sessions.
+StudyWise is a productivity app designed to support students with their revision and study schedules. It offers a range of features, including a todo list, calendar, Pomodoro timer, and dark/night mode, to help users stay organized, focused, and motivated during their study sessions.
 
 ## Table of Contents
 
@@ -30,31 +30,31 @@ Image here
 
 ## Getting Started
 
-To run appName locally, follow these steps:
+To run StudyWise locally, follow these steps:
 
 1. Clone the repository:
    git clone git@github.com:Modernsapien/project-week-3.git
 
-2. Install the required dependencies:
+2. Install the required dependencies for backend:
    cd backend
    npm install
 
-3. Start the development server:
+3. Start the backend development server:
    npm run setup-db
    npm run dev
 
-4. Install the required dependencies:
-   cd client
+4. Install the required dependencies for client:
+   cd ../client
    npm install
 
-5. Start the client server:
+5. Start the client development server:
    npm run dev
 
-6. create a .env file in backend folder
+6. Create a .env file in the backend folder and add the following:
 
-7. create instance on ElephantSql and add to .env file 
+7. create instance on ElephantSql and add to .env file
+   PORT=3000
    DB_URL="yourLink"
-   
 
 The app should now be running on http://localhost:3000.
 
@@ -79,7 +79,7 @@ The app should now be running on http://localhost:3000.
 
 ## Contributing
 
-Contributions to appName are welcome! If you find any bugs or have suggestions for new features, feel free to open an issue or submit a pull request.
+Contributions to StudyWise are welcome! If you find any bugs or have suggestions for new features, feel free to open an issue or submit a pull request.
 
 ## License
 
