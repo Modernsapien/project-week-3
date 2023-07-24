@@ -5,7 +5,7 @@ import {
   Login,
   ProtectedRoute,
   Dashboard,
-  Calender,
+  Calendar,
   Todo,
   Pomodoro,
   Signup,
@@ -20,7 +20,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<ProtectedRoute redirectTo="/login" />}>
             <Route index element={<Dashboard />} />
-            <Route path="/calender" element={<Calender />} />
+            <Route path="/calendar" element={<Calendar />} />
             <Route path="/todo" element={<Todo />} />
             <Route path="/pomodoro" element={<Pomodoro />} />
           </Route>
