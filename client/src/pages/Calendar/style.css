@@ -1,0 +1,76 @@
+.calendar-paged-body {
+  display: flex;
+  gap: 40px;
+  justify-content: space-evenly;
+}
+.container {
+  width: 70%;
+  height: 100vh;
+  overflow: scroll;
+}
+.rc-h-48 {
+  height: 8rem;
+}
+.rc-max-h-36 {
+  max-height: 5.5rem;
+}
+
+.rc-text-sm {
+  font-size: 0.7rem;
+  line-height: 1rem;
+}
+.rc-flex {
+  align-items: center;
+}
+.rc-cursor-pointer {
+  padding: 1rem;
+  background-color: lightblue;
+  border: none;
+  width: 8rem;
+}
+[title="Current Month"] {
+  /* background-color: red; */
+  margin: 0;
+  padding-block: 1rem;
+  background-color: rgb(137, 171, 182);
+}
+.add-event {
+  background: rgb(56, 56, 106);
+  color: white;
+  padding: 1rem;
+  margin: 0 auto;
+}
+dialog {
+  border: 1px solid black;
+  padding: 2rem 3rem;
+}
+
+dialog h1 {
+  font-size: 2rem;
+}
+
+input[type="text"] {
+  border: 1px solid black;
+  display: block;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  padding: 0.4rem;
+  width: 100%;
+}
+label {
+  display: block;
+}
+button {
+  display: block;
+  padding: 0.5rem;
+  border: 1px solid black;
+}
+.button-section {
+  display: flex;
+  margin: 1rem auto;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.input-group {
+  margin: 1rem auto;
+}
