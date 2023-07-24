@@ -57,12 +57,12 @@ describe("User", () => {
     })
 
     //GET USER BY USERNAME
-    it("should return the user with given username", async () => {
+    it("should return the user with provided username", async () => {
         const data = {
             username: username
         }
         const response = await request(app)
-        .post("/user/username")
+        .get("/user/username")
         .send(data)
         .expect(200)
     
@@ -71,5 +71,38 @@ describe("User", () => {
     })
 
     //GET USER BY ID
+    it("should return the user with provided ID", async () => {
+        const response = await request(app)
+            .get(`/user/${user_id}`)
+            .expect(200)
 
+        expect(response.body.username).toEqual(username)
+    })
+
+    //GET USER BY EMAIL
+    it("should return the user with provided email", async () => {
+        const response = await request(app)
+            .get("/user/email")
+            .expect(200)
+
+        expect(response.body.username).toEqual(username)
+    })
+
+    //GET ALL USERS
+    it("should return all users", async () => {
+        const response = await request(app)
+            .get("/user")
+            .expect(200)
+
+        expect(Array.isArray(response.body)).toBe(true)
+        expect(response.body.length).toBeGreaterThan(0)
+    })
+
+    //UPDATE USER
+    it("should update the user", async () => {
+        const response = await request(app)
+            .put(`user/${user_id}`)
+            .send(data)
+            .expect(202)
+    })
 })
