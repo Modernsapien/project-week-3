@@ -98,11 +98,29 @@ describe("User", () => {
         expect(response.body.length).toBeGreaterThan(0)
     })
 
-    //UPDATE USER
+    //UPDATE USER FIX THISSSSS
     it("should update the user", async () => {
         const response = await request(app)
             .put(`user/${user_id}`)
             .send(data)
             .expect(202)
+    })
+
+    //LOGOUT should be a get request
+    it("should logout the user", async () => {
+        heraders = {
+            authorization: token
+        }
+        const response = await request(app)
+            .post("/user/logout")
+            .set(headers)
+            .expect(200)
+    })
+
+    //DELETE USER
+    it("should delete the user with provided ID", async () => {
+        const response = await request(app)
+            .delete(`user/${user_id}`)
+            .expect(204)
     })
 })
