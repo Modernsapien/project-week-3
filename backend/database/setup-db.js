@@ -3,7 +3,7 @@ const path = require('path');
 
 require("dotenv").config()
 
-const sql = fs.readFileSync(path.join(__dirname, 'florin.sql')).toString()
+const sql = fs.readFileSync(path.join(__dirname, 'studywise.sql')).toString()
 
 const db = require("./db")
 
