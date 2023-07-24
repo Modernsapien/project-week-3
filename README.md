@@ -36,7 +36,7 @@ To run appName locally, follow these steps:
    git clone git@github.com:Modernsapien/project-week-3.git
 
 2. Install the required dependencies:
-   cd server
+   cd backend
    npm install
 
 3. Start the development server:
