@@ -17,6 +17,7 @@
     "date-fns": "^2.30.0",
 >>>>>>> 4d042daa5cbbb3d236ede691c450567c6c8ca779
     "react": "^18.2.0",
+    "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.2"
   },
