@@ -1,9 +1,9 @@
 // login.jsx
 import React from "react";
-import MusicPlayer from "../../contexts/handleMusic/musicPlayer";
-import useMusicPlayer from "../../contexts/handleMusic/useMusicPlayer";
-import WaveBackground from "../../contexts/waveBackground";
-
+import MusicPlayer from "./handleMusic/musicPlayer";
+import useMusicPlayer from "./handleMusic/useMusicPlayer";
+import WaveBackground from "./background";
+import "./background/pomodoro.css";
 
 const Pomodoro = () => {
   const musicSrc = "../../../public/music1.mp3";
@@ -11,13 +11,15 @@ const Pomodoro = () => {
 
   return (
     <>
-      <WaveBackground />
+      <div className="pomodoro-background">
+        <WaveBackground />
 
-      <div>
-        <MusicPlayer musicSrc={musicSrc} audioRef={audioRef} />
-        <button onClick={handlePlayPause}>
-          {isPlaying ? "Pause Music" : "Play Music"}
-        </button>
+        <div>
+          <MusicPlayer musicSrc={musicSrc} audioRef={audioRef} />
+          <button onClick={handlePlayPause}>
+            {isPlaying ? "Pause Music" : "Play Music"}
+          </button>
+        </div>
       </div>
     </>
   );

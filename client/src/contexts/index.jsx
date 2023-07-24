@@ -4,7 +4,7 @@ import { useState, useContext, createContext } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState("calendar");
+  const [user, setUser] = useState("pomodoro");
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
