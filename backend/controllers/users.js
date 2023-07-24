@@ -8,9 +8,9 @@ class UserController {
   static async getAllUsers(req, res) {
     try {
       const users = await User.getAll();
-      res.json(users);
+      res.status(200).json(users);
     } catch (error) {
-      res.status(500).json({ error: "Unable to fetch users." });
+      res.status(404).json({ error: "Unable to fetch users." });
     }
   }
 
@@ -18,7 +18,7 @@ class UserController {
     const { id } = req.params;
     try {
       const user = await User.getById(id);
-      res.json(user);
+      res.status(200).json(user);
     } catch (error) {
       res.status(404).json({ error: "User not found." });
     }
@@ -29,7 +29,7 @@ class UserController {
     try {
       const user = await User.getByUsername(username);
       console.log(user);
-      res.json(user);
+      res.status(200).json(user);
     } catch (error) {
       console.log(error);
       res.status(404).json({ error: "User not found." });
@@ -42,43 +42,25 @@ class UserController {
     try {
       const user = await User.getByEmail(email);
       console.log(user);
-      res.json(user);
+      res.status(200).json(user);
     } catch (error) {
       console.log(error);
       res.status(404).json({ error: "User not found." });
     }
   }
 
-  static async createUser(req, res) {
-    const { email, username, password } = req.body;
-    try {
-      const rounds = parseInt(process.env.BCRYPT_SALT_ROUNDS);
-      const salt = await bcrypt.genSalt(rounds);
-      const hashedPassword = await bcrypt.hash(password, salt);
-      const newUser = await User.create({
-        email,
-        username,
-        password: hashedPassword,
-        isStudent,
-        isTeacher,
-      });
-      res.status(201).json(newUser);
-    } catch (error) {
-      res.status(500).json({ error: "Unable to create user." });
-    }
-  }
-
   static async updateUser(req, res) {
     const { id } = req.params;
-    const { username, password, isStudent, isTeacher } = req.body;
+    const { firstName, lastName, email, username, password } = req.body;
+
     try {
       const user = await User.getById(id);
-      user.username = username;
-      user.password = password;
-      user.isStudent = isStudent;
-      user.isTeacher = isTeacher;
-      await user.update();
-      res.json(user);
+      user.firstName = firstName || user.firstName;
+      user.lastName = lastName || user.lastName;
+      user.email = email || user.email;
+      user.username = username || user.username;
+      user.password = password || user.password;
+      res.status(202).json(user);
     } catch (error) {
       res.status(404).json({ error: "User not found." });
     }
@@ -89,7 +71,7 @@ class UserController {
     try {
       const user = await User.getById(id);
       await user.delete();
-      res.json({ message: "User deleted successfully." });
+      res.status(204).json({ message: "User deleted successfully." });
     } catch (error) {
       res.status(404).json({ error: "User not found." });
     }
@@ -104,16 +86,18 @@ class UserController {
       const result = await User.create(data);
       const verificationToken = (await Verification.create(result.id)).token;
 
-      const url = `${process.env.BASE_URL}emailVerification/?token=${verificationToken}`;
+      const url = `${process.env.BASE_URL}checkEmailToken/?token=${verificationToken}`;
       console.log({ url });
       const sgApiKey = process.env.SENDGRID_API_KEY;
       sgMail.setApiKey(sgApiKey);
 
       await sgMail.send({
         to: result.email,
-        from: `Florin Skills <${process.env.SENDER_EMAIL}>`,
+        from: `StudyWise <${process.env.SENDER_EMAIL}>`,
         subject: "Verify your email",
-        html: `<div style="width: 70%; margin: 0 auto; "><h6 style="font-size: 18px">Please verify your email by clicking the button:</h6>
+        html: `<div style="width: 70%; margin: 0 auto; ">
+          <p>Welcome to Studywise, your best companion in striving for academic excellence!<p>
+          <h6 style="font-size: 18px">Please verify your email by clicking the button:</h6>
           <a style="margin-top:1em; padding: 1em; background-color: #33b249; text-decoration: none ; color: white" href="${url}"> Verify Your Email</a></div>`,
       });
       res.status(201).send(result);
@@ -151,49 +135,8 @@ class UserController {
     }
   }
 
-  static async getUserTeacherId(req, res) {
-    const { username } = req.body;
-    try {
-      const teacherId = await User.getUserTeacherId(username);
-      res.json({ teacherId });
-    } catch (error) {
-      res.status(404).json({ error: error.message });
-    }
-  }
-
-  static async getUserClasses(req, res) {
-    const { id } = req.params;
-    try {
-      const userClasses = await User.getClasses(id);
-      res.json(userClasses);
-    } catch (error) {
-      res.status(404).json({ error: "Unable to fetch classes." });
-    }
-  }
-
-  static async getUserPastClasses(req, res) {
-    const { id } = req.params;
-    try {
-      const classes = await User.getPastClasses(id);
-      console.log(classes); // add this line
-      res.json(classes);
-    } catch (error) {
-      res.status(404).json({ error: "User not found." });
-    }
-  }
-
-  static async getUserFutureClasses(req, res) {
-    const { id } = req.params;
-    try {
-      const classes = await User.getFutureClasses(id);
-      console.log(classes); // add this line
-      res.json(classes);
-    } catch (error) {
-      res.status(404).json({ error: "User not found." });
-    }
-  }
   static async checkEmailToken(req, res) {
-    const { token } = req.params;
+    const token = req.query.token;
     try {
       console.log("run");
       const verifiedToken = await Verification.getOneByToken(token);
@@ -202,36 +145,6 @@ class UserController {
       res.status(200).json({ message: "Token is valid" });
     } catch (error) {
       res.status(400).json(error);
-    }
-  }
-
-  static async partialUpdateUser(req, res) {
-    const { id } = req.params;
-    const { username, email, password } = req.body;
-
-    try {
-      const user = await User.getById(id);
-
-      if (username) {
-        user.username = username;
-      }
-
-      if (email) {
-        user.email = email;
-      }
-
-      if (password) {
-        const rounds = parseInt(process.env.BCRYPT_SALT_ROUNDS);
-        const salt = await bcrypt.genSalt(rounds);
-        user.password = await bcrypt.hash(password, salt);
-      }
-
-      await user.patchUser();
-
-      res.json({ message: "User information updated successfully." });
-    } catch (error) {
-      console.error("Error updating user:", error);
-      res.status(500).json({ error: "Failed to update user information." });
     }
   }
 }

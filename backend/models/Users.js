@@ -59,16 +59,16 @@ class User {
 
   static async create(data) {
     const {
-      first_name: firstName,
-      last_name: lastName,
+      firstName: first_name,
+      lastName: last_name,
       email: userEmail,
-      username: userUsername,
+      username: username,
       password,
     } = data;
     const query =
       "INSERT INTO users (first_name, last_name, email, username, password) " +
       "VALUES ($1, $2, $3, $4, $5) RETURNING user_id";
-    const values = [firstName, lastName, userEmail, userUsername, password];
+    const values = [first_name, last_name, userEmail, username, password];
     const response = await db.query(query, values);
     const newId = response.rows[0].user_id;
     return User.getById(newId);
@@ -76,7 +76,7 @@ class User {
 
   async update() {
     const query =
-      "UPDATE users SET first_name = $1, last_name = $2, username = $3, password = $4, " +
+      "UPDATE users SET first_name = $1, last_name = $2, username = $3, password = $4 " +
       "WHERE user_id = $5";
     const values = [
       this.firstName,
@@ -93,29 +93,6 @@ class User {
     await db.query("DELETE FROM users WHERE user_id = $1", [this.id]);
   }
 
-  async patchUser() {
-    const query = `
-      UPDATE users
-      SET first_name = $1, last_name = $2, email = $3, username = $4, password = $5,
-          is_student = $6, is_teacher = $7, student_points = $8, teacher_points = $9
-      WHERE user_id = $10
-    `;
-
-    const values = [
-      this.firstName,
-      this.lastName,
-      this.email,
-      this.username,
-      this.password,
-      this.isStudent,
-      this.isTeacher,
-      this.studentPoints,
-      this.teacherPoints,
-      this.id,
-    ];
-
-    await db.query(query, values);
-  }
   static async verifyUser(id) {
     const response = await db.query(
       `UPDATE users SET is_verified = true WHERE user_id = $1 RETURNING *`,
@@ -123,24 +100,6 @@ class User {
     );
 
     return response.rows[0];
-  }
-
-  async patchUser() {
-    const query = `
-            UPDATE users
-            SET first_name = $1, last_name = $2, email = $3, username = $4, password = $5, WHERE user_id = $6
-          `;
-
-    const values = [
-      this.firstName,
-      this.lastName,
-      this.email,
-      this.username,
-      this.password,
-      this.id,
-    ];
-
-    await db.query(query, values);
   }
 }
 
