@@ -1,8 +1,9 @@
 import "./styles.css";
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { Link } from "react-router-dom";
 
-export default function index() {
+export default function LoginForm() {
   return (
       <>
         <form>
@@ -16,10 +17,9 @@ export default function index() {
                 <input type="submit" className="submit" value="Login" />
             </div>
             <div className="signup">
-                <span>Don't have an account? <a href="#">Register here</a></span>
+                <span>Don't have an account? <Link to="/signup">Register here</Link></span>
             </div>
         </form>
       </>
-    
   )
 }

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=McLaren&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-.wrapper {
+.register-wrapper .wrapper {
     background: #fff;
     padding: 0 20px 0 20px;
 }
@@ -32,6 +32,12 @@ header {
     background-color: #006494;
     padding: 0px;
     box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.2);
+}
+
+.name {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
 }
 
 .right {
@@ -118,8 +124,9 @@ span a:hover {
     .row {
         max-width:420px;
         width: 100%;
+        height: 700px;
     }
-
+    
     .side-image {
         display: none;
     }

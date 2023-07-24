@@ -1,10 +1,9 @@
-import { LoginForm } from "../../components";
+import { SignupForm } from "../../components";
 
-const Login = () => {
-
+export default function Signup() {
   return (
     <>
-        <div className="wrapper">
+        <div className="signup-wrapper">
             <div className=" container main">
                 <div className="row">
                     <div className="col-md-6 side-image">
@@ -15,8 +14,8 @@ const Login = () => {
                             <img src="src/assets/logo.png" alt=""/>
                         </div>
                         <div className="input-box">
-                            <header>Welcome to Study Wise</header>
-                            <LoginForm />
+                            <header>Create Account</header>
+                            <SignupForm />
                         </div>  
                     </div>
                 </div>
@@ -24,6 +23,4 @@ const Login = () => {
         </div>
     </>
   )
-};
-
-export default Login;
+}

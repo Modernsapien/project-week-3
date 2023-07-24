@@ -8,6 +8,7 @@ import {
   Calender,
   Todo,
   Pomodoro,
+  Signup,
 } from "./pages";
 import { AuthProvider } from "./contexts";
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<ProtectedRoute redirectTo="/login" />}>
             <Route index element={<Dashboard />} />
             <Route path="/calender" element={<Calender />} />
