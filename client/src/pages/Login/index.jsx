@@ -1,7 +1,7 @@
 import React from 'react'
 import { LoginForm } from "../../components";
 
-const Login = () => {
+export default function Login() {
 
   return (
     <>
@@ -27,8 +27,3 @@ const Login = () => {
   )
 };
 
-export default function index() {
-  return (
-    <div>index</div>
-  )
-}
