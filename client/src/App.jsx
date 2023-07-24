@@ -4,7 +4,7 @@ import {
   Login,
   ProtectedRoute,
   Dashboard,
-  Calender,
+  Calendar,
   Todo,
   Pomodoro,
 } from "./pages";
@@ -17,7 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<ProtectedRoute redirectTo="/login" />}>
             <Route index element={<Dashboard />} />
-            <Route path="/calender" element={<Calender />} />
+            <Route path="/calendar" element={<Calendar />} />
             <Route path="/todo" element={<Todo />} />
             <Route path="/pomodoro" element={<Pomodoro />} />
           </Route>
