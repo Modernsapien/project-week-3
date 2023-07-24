@@ -3,9 +3,9 @@ const UserController = require("../controllers/users");
 
 const router = express.Router();
 
-router.post("/username", UserController.getUserByUsername);
-router.post("/email", UserController.getUserByEmail);
 router.get("/checkEmailToken", UserController.checkEmailToken);
+router.get("/username", UserController.getUserByUsername);
+router.get("/email", UserController.getUserByEmail);
 router.get("/:id", UserController.getUserById);
 router.get("/", UserController.getAllUsers);
 router.put("/:id", UserController.updateUser);
