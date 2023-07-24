@@ -16,7 +16,7 @@ StudyWise is a productivity app designed to support students with their revision
 
 ## Features
 
-- **Todo**: Keep track of tasks and topics that need to be revised. Users can mark completed tasks and review their previous completed tasks within a specific period. Additionally, the app allows filtering tasks by priority to help users prioritize their study sessions effectively.
+- **Todo**: Keep track of tasks and topics that need to be revised. Users can mark completed tasks and review their previous completed tasks within a specific period. Additionally, the app allows filtering tasks to help users find their todos effectively.
 
 - **Calendar**: Plan study sessions and topics to review on specific days. Users can add a color code to subjects for easy visual identification. The app also provides filtering options to view all tasks related to a specific subject.
 
