@@ -2,12 +2,15 @@
   display: flex;
   gap: 40px;
   justify-content: space-evenly;
+  margin: 2rem;
 }
+
 .container-events {
   width: 70%;
   height: 100vh;
   overflow: scroll;
 }
+
 .rc-h-48 {
   height: 8rem;
 }
@@ -24,15 +27,16 @@
 }
 .rc-cursor-pointer {
   padding: 1rem;
-  background-color: lightblue;
+  /* background-color: lightblue; */
   border: none;
   width: 8rem;
+  margin: 0.3rem;
+  box-shadow: 0 0 8px rgb(192, 192, 192);
 }
+
 [title="Current Month"] {
-  /* background-color: red; */
   margin: 0;
   padding-block: 1rem;
-  background-color: rgb(137, 171, 182);
 }
 .add-event {
   background: rgb(56, 56, 106);
@@ -41,15 +45,20 @@
   margin: 0 auto;
 }
 dialog {
-  border: 1px solid black;
   padding: 2rem 3rem;
+  border-radius: 10px;
+  width: 50%;
+}
+dialog::backdrop {
+  background-color: rgba(65, 65, 65, 0.637);
 }
 
 dialog h1 {
   font-size: 2rem;
 }
 
-input[type="text"] {
+input,
+textarea {
   border: 1px solid black;
   display: block;
   border-radius: 5px;
@@ -64,6 +73,7 @@ button {
   display: block;
   padding: 0.5rem;
   border: 1px solid black;
+  border-radius: 10px;
 }
 .button-section {
   display: flex;
@@ -73,4 +83,35 @@ button {
 }
 .input-group {
   margin: 1rem auto;
+}
+input[type="date"],
+input[type="time"] {
+  width: 50%;
+  display: inline;
+}
+
+.upcoming-event-title {
+  font-size: 2rem;
+  margin: 1rem 0;
+  padding: 1rem 0;
+  border-bottom: 1px solid black;
+}
+
+.date-time {
+  color: grey;
+  font-size: 0.8rem;
+}
+.event {
+  padding: 0.8rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.event:not(:last-child) {
+  border-bottom: 1px solid rgb(219, 219, 219);
+}
+.remove-event {
+  padding: 0.4rem;
+  border: none;
 }
