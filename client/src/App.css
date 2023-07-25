@@ -1,49 +1,58 @@
-
-
 .timer-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  
+  }
+  
+  .timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-top:150px;
+  }
+  
+  .buttons {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    
+    padding: 10px 15px;
+  }
+  
 
-.timer {
-  display: inline-block;
-  border: 2px solid #ccc;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-.buttons {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-button {
-  padding: 10px 15px;
-  margin: 5px;
-}
-
-.display {
-  font-size: 36px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.controls {
-  margin-bottom: 10px;
-}
-
-.carousel {
-  margin-top: 20px;
-  z-index: 9;
-  color: black;
-}
-
-.quote {
-  display: none;
-}
-
-.quote {
-  display: block;
-}
+  button:not(:last-child) {
+    margin-right: 10px;
+  }
+  
+  .display {
+    font-size: 100px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 80px;
+  }
+  
+  .controls {
+    margin-bottom: 10px;
+  }
+  
+  .carousel {
+    margin-top: 20px;
+    z-index: 9;
+    color: black;
+    text-align: center;
+  }
+  
+  .quote {
+    max-width: 900px;
+    display: block;
+    margin: 0 auto; 
+    font-size: 30px;
+  }
+  
