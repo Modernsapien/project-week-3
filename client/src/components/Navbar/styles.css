@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=McLaren&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.navbar {
+    background: linear-gradient(0.20turn,#006494, #368fb8);
+}
+
+.brand {
+    font-size: 22px;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav-link {
+    font-size: 22px;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 30px;
+}
+
+.nav-link:hover {
+    color: #A0A0A0;
+}
+
+.nav-link.active {
+    text-decoration: underline;
+}
+
+.navbar-nav > .nav-link.active {
+    color: #fff;
+}
+
+.navbar img {
+    width: 70px;
+    margin: 0 auto;
+}
+
+.icon {
+    color: #fff;
+    background-color: #fff;
+}
+

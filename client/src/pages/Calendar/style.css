@@ -4,10 +4,13 @@
   justify-content: space-evenly;
   margin: 2rem;
 }
-.container {
-  width: 68%;
+
+.container-events {
+  width: 70%;
+  height: 100vh;
   overflow: scroll;
 }
+
 .rc-h-48 {
   height: 8rem;
 }
