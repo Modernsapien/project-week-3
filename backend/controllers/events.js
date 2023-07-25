@@ -32,6 +32,16 @@ class EventController {
         }
     }
 
+    static async getEventByUserId(req, res) {
+        const { userId } = req.params;
+        try {
+            const events = await Event.getByUserId(userId);
+            res.status(200).json(events);
+        } catch (error) {
+            res.status(404).json({ error: "No event found with userID provided." });
+        }
+    }
+
     static async createEvent(req, res) {
         const data = req.body;
         try {
