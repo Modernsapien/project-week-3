@@ -12,10 +12,6 @@ import {
 import { AuthProvider } from "./contexts";
 import { Navigation } from './components';
 
-
-
-
-
 function App() {
   return (
     <>

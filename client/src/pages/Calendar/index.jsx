@@ -7,24 +7,27 @@ const Calendar = () => {
   const formRef = useRef(showAddForm);
   const [events, setEvents] = useState([
     {
+      id: 1,
       title: "See Johnkdjfhlskjd hgajshdflakjdsh",
       description: "123",
       date: new Date("2023-07-30T21:15"),
       color: "red",
     },
-    { title: "See John", date: new Date("2023-07-30T21:15") },
+    { id: 2, title: "See John", date: new Date("2023-07-30T21:15") },
     {
+      id: 3,
       title: "See John",
       description: "123",
       date: new Date("2023-07-30T21:15"),
       duration: 120,
     },
     {
+      id: 4,
       title: "Call John",
       description: "123",
       date: new Date("2023-07-30T08:04"),
     },
-    { title: "Meeting with Bob", description: "123", date: new Date() },
+    { id: 5, title: "Meeting with Bob", description: "123", date: new Date() },
   ]);
 
   useEffect(() => {
@@ -36,6 +39,12 @@ const Calendar = () => {
     }
     // getEvents();
   }, []);
+  async function removeEvent(id) {
+    // const res = await fetch(`http://localhost:3000/${id}`, {
+    //   method: "DELETE",
+    // });
+    setEvents(events.filter((el) => el.id !== id));
+  }
   return (
     <div className="calendar-paged-body">
       <div className="container-events">
@@ -53,6 +62,8 @@ const Calendar = () => {
           showAddForm={showAddForm}
           setShowAddForm={setShowAddForm}
           formRef={formRef}
+          setEvents={setEvents}
+          events={events}
         />
         <div className="upcoming-events">
           <h2 className="upcoming-event-title">Upcoming Events</h2>
@@ -79,7 +90,10 @@ const Calendar = () => {
                         .padStart(2, "0")}`}
                   </p>
                 </div>
-                <button className="remove-event">
+                <button
+                  className="remove-event"
+                  onClick={() => removeEvent(event.id)}
+                >
                   <svg
                     fill="#ff0000"
                     version="1.1"
