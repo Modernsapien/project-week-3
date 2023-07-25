@@ -6,9 +6,12 @@
   margin: 2rem;
   padding: 2rem;
 }
+
 .container {
+
   overflow: scroll;
 }
+
 .rc-h-48 {
   height: 8rem;
 }

@@ -4,9 +4,8 @@ DROP TABLE IF EXISTS verification_tokens CASCADE;
 DROP TABLE IF EXISTS events CASCADE;
 DROP TABLE IF EXISTS todos CASCADE;
 
-
 CREATE TABLE users (
-    user_id SERIAL PRIMARY KEY,
+    user_idmSERIAL PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR (255) UNIQUE NOT NULL,
@@ -15,16 +14,15 @@ CREATE TABLE users (
     is_verified BOOLEAN DEFAULT false
 );
 
-
 CREATE TABLE tokens (
-  token_id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
-  token VARCHAR(255) NOT NULL
+    token_id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
+    token VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE verification_tokens(
     token_id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(user_id)  ON DELETE CASCADE NOT NULL,
+    user_id INT REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
     token VARCHAR(255) NOT NULL
 );
 
@@ -35,6 +33,7 @@ CREATE TABLE events(
     date_time TIMESTAMP NOT NULL,
     duration INT,
     reminder BOOLEAN NOT NULL DEFAULT true,
+    colour VARCHAR(7),
     user_id INT REFERENCES users(user_id) ON DELETE CASCADE
 );
 
@@ -45,4 +44,3 @@ CREATE TABLE todos(
     is_finished BOOLEAN NOT NULL,
     user_id INT REFERENCES users(user_id) ON DELETE CASCADE
 );
-

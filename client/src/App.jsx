@@ -10,6 +10,7 @@ import {
   Signup,
 } from "./pages";
 import { AuthProvider } from "./contexts";
+import { Navigation } from './components';
 
 function App() {
   return (
@@ -19,10 +20,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<ProtectedRoute redirectTo="/login" />}>
-            <Route index element={<Dashboard />} />
-            <Route path="/calendar" element={<Calendar />} />
-            <Route path="/todo" element={<Todo />} />
-            <Route path="/pomodoro" element={<Pomodoro />} />
+            <Route path="/" element={<Navigation />}>
+              <Route index element={<Dashboard />} />
+              <Route path="/calendar" element={<Calendar />} />
+              <Route path="/todo" element={<Todo />} />
+              <Route path="/pomodoro" element={<Pomodoro />} />
+            </Route>
           </Route>
         </Routes>
       </AuthProvider>
