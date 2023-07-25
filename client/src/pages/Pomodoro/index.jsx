@@ -4,6 +4,7 @@ import useMusicPlayer from "./handleMusic/useMusicPlayer";
 import WaveBackground from "./background";
 import "./background/pomodoro.css";
 import quotesData from "./quotes/quotes.json";
+import "./styles.css"
 
 const Pomodoro = () => {
   const musicSrc = "../../../public/music1.mp3";

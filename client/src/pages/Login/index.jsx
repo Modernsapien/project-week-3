@@ -1,8 +1,8 @@
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { LoginForm } from "../../components";
 
 export default function Login() {
-
   return (
     <>
         <div className="wrapper">
@@ -22,8 +22,7 @@ export default function Login() {
                     </div>
                 </div>
             </div>
-        </div>
+          </div>
     </>
-  )
-};
-
+  );
+}
