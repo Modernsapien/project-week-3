@@ -6,7 +6,6 @@ import { LoginForm } from "../../components";
 export default function Login() {
   return (
     <>
-
         <div className="wrapper">
             <div className="container main">
                 <div className="row login">
@@ -25,8 +24,6 @@ export default function Login() {
                 </div>
             </div>
           </div>
-        </div>
-      </div>
     </>
   );
 }
