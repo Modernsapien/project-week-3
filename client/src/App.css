@@ -13,7 +13,7 @@
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
-    margin-top:150px;
+    margin-top:20px;
   }
   
   .buttons {
@@ -21,14 +21,18 @@
     margin-bottom: 10px;
   }
   
-  button {
-    
+  .pomo-button {
     padding: 10px 15px;
+    background-color: antiquewhite;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* Increase the shadow values */
   }
   
-
-  button:not(:last-child) {
+  .pomo-button:not(:last-child) {
     margin-right: 10px;
+  }
+  
+  .pomo-button:hover{
+    opacity: 0.8;
   }
   
   .display {

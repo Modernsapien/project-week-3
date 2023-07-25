@@ -73,21 +73,21 @@ const Pomodoro = () => {
         <WaveBackground />
         <div>
           <MusicPlayer musicSrc={musicSrc} audioRef={audioRef} />
-          <button onClick={handlePlayPause}>
+          <button className="pomo-button" onClick={handlePlayPause}>
             {isPlaying ? "Pause Music" : "Play Music"}
           </button>
         </div>
         <div className="timer">
           <div className="buttons">
-            <button onClick={() => setTime(25)}>Pomodoro</button>
-            <button onClick={() => setTime(5)}>Short Break</button>
-            <button onClick={() => setTime(15)}>Long Break</button>
+            <button className="pomo-button" onClick={() => setTime(25)}>Pomodoro</button>
+            <button className="pomo-button" onClick={() => setTime(5)}>Short Break</button>
+            <button className="pomo-button" onClick={() => setTime(15)}>Long Break</button>
           </div>
           <div className="display">
             <span id="time">25:00</span>
           </div>
           <div className="controls">
-            <button id="startStop" onClick={startStopTimer}>
+            <button className="pomo-button" id="startStop" onClick={startStopTimer}>
               {intervalId ? "Stop" : "Start"}
             </button>
           </div>
