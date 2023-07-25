@@ -1,5 +1,4 @@
 // login.jsx
-import React from "react";
 import MusicPlayer from "./handleMusic/musicPlayer";
 import useMusicPlayer from "./handleMusic/useMusicPlayer";
 import WaveBackground from "./background";

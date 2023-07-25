@@ -1,0 +1,22 @@
+.dashboard-body-container {
+  display: flex;
+}
+.study-pic {
+  width: 50%;
+}
+.directory-section {
+  text-align: center;
+}
+.welcome-title {
+  font-size: 3rem;
+}
+.welcome-subtitle {
+  font-size: 2rem;
+}
+
+/* a {
+  display: block;
+  background-color: blue;
+  padding: 1.5rem;
+  color: white;
+} */
