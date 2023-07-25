@@ -1,6 +1,9 @@
 import "./style.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts"
 function Dashboard() {
+  const { user } = useAuth();
+  
   return (
     <div className="dashboard-body-container">
       <img

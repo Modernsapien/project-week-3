@@ -38,6 +38,14 @@ class Event {
         return new Event(response.rows[0]);
     }
 
+    static async getByUserId(userId) {
+        const response = await db.query("SELECT * FROM events WHERE user_id = $1", [userId]);
+        if (response.rows.length == 0) {
+            throw new Error("No event found");
+        }
+        return response.rows.map((row) => new Event(row));
+    }
+
     static async getByKeyword(keyword) {
         keyword = `%${keyword}%`
         const response = await db.query("SELECT * FROM events WHERE event_title LIKE $1 OR event_description LIKE $1", [keyword]);
