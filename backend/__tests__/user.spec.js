@@ -114,7 +114,7 @@ describe("User", () => {
         expect(response.body.lastname).toEqual(data.lastname)
     })
 
-    //LOGOUT should be a get request
+    //LOGOUT
     it("should logout the user", async () => {
         heraders = {
             authorization: token
