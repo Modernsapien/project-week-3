@@ -98,12 +98,20 @@ describe("User", () => {
         expect(response.body.length).toBeGreaterThan(0)
     })
 
-    //UPDATE USER FIX THISSSSS
+    //UPDATE USER
     it("should update the user", async () => {
+        data = {
+            firstname: "newTestF",
+            lastname: "newTestL",
+            username: "newTestU"
+        }
         const response = await request(app)
             .put(`user/${user_id}`)
             .send(data)
             .expect(202)
+        expect(response.body.username).toEqual(data.username)
+        expect(response.body.firstname).toEqual(data.firstname)
+        expect(response.body.lastname).toEqual(data.lastname)
     })
 
     //LOGOUT should be a get request
@@ -112,7 +120,7 @@ describe("User", () => {
             authorization: token
         }
         const response = await request(app)
-            .post("/user/logout")
+            .get("/user/logout")
             .set(headers)
             .expect(200)
     })
