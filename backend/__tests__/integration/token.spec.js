@@ -1,6 +1,6 @@
 const request = require("supertest")
-const app = require("../api")
-const db = require("../database/test-db")
+const app = require("../../api")
+const db = require("../../database/test-db")
 
 describe("Calendar", () => {
     let api

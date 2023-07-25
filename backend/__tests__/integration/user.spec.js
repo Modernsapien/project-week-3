@@ -1,20 +1,20 @@
 const request = require("supertest")
-const app = require("../api")
-const db = require("../database/test-db")
+const app = require("../../api")
+const db = require("../../database/db")
 
 describe("User", () => {
     let api
 
-    beforeAll(() => {
-        api = app.listen(5000, () => {
+    beforeAll(async () => {
+        api = app.listen(5001, () => {
             console.log("Test server running on port 5000")
         })
     })
 
-    afterAll((done) => {
+    afterAll(async () => {
         console.log("Stopping test server")
         db.end()
-        api.close(done)
+        await api.close()
     })
 
     let username = ""
@@ -24,10 +24,11 @@ describe("User", () => {
 
     //REGISTER
     it("should create a new user", async () => {
+        // db.query("INSERT INTO users(first_name, last_name, email, username, password) VALUES('jim', 'bob', 'test@test.com', 'asdf', 'password')")
         const data = {
             first_name: "testF",
             last_name: "testL",
-            email: "test@test.com",
+            userEmail: "test@test.com",
             username: "testU",
             password: "testP"
         }
@@ -45,8 +46,8 @@ describe("User", () => {
     //LOGIN
     it("should login the user", async () => {
         const data = {
-            username: username,
-            password: testP
+            username: "username",
+            password: "testP"
         }
         const response = await request(app)
             .post("/user/login")
@@ -116,7 +117,7 @@ describe("User", () => {
 
     //LOGOUT
     it("should logout the user", async () => {
-        heraders = {
+        headers = {
             authorization: token
         }
         const response = await request(app)
