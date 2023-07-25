@@ -39,13 +39,12 @@ class Event {
     }
 
     static async getByKeyword(keyword) {
-        const response = await db.query("SELECT * FROM events WHERE event_title LIKE '%$1%' OR event_description LIKE '%$1%'", [
-            keyword,
-        ]);
-        if (response.rows.length !== 1) {
-            throw new Error("Unable to locate event.");
+        keyword = `%${keyword}%`
+        const response = await db.query("SELECT * FROM events WHERE event_title LIKE $1 OR event_description LIKE $1", [keyword]);
+        if (response.rows.length == 0) {
+            throw new Error("No event found.");
         }
-        return new Event(response.rows[0]);
+        return response.rows.map((row) => new Event(row));
     }
 
     static async create(data) {
@@ -58,6 +57,7 @@ class Event {
             colour,
             userId: user_id
         } = data;
+
         const query =
             "INSERT INTO events (event_title, event_description, date_time, duration, reminder, colour, user_id) " +
             "VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING event_id";

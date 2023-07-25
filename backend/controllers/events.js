@@ -25,8 +25,8 @@ class EventController {
     static async searchEvent(req, res) {
         const { keyword } = req.body;
         try {
-            const event = await Event.getByKeyword(keyword);
-            res.status(200).json(event);
+            const events = await Event.getByKeyword(keyword);
+            res.status(200).json(events);
         } catch (error) {
             res.status(404).json({ error: "No event found with keyword provided." });
         }
@@ -35,7 +35,7 @@ class EventController {
     static async createEvent(req, res) {
         const data = req.body;
         try {
-            const event = await Event.createEvent(data);
+            const event = await Event.create(data);
             res.status(200).json(event);
         } catch (error) {
             res.status(404).json({ error: "Cannot create event." });
@@ -43,10 +43,9 @@ class EventController {
     }
 
     static async updateEvent(req, res) {
-        const { eventId } = req.params;
+        const eventId = req.params.id;
         const { eventTitle, eventDescription, dateTime, duration, reminder, colour, userId
         } = req.body;
-
         try {
             const event = await Event.getById(eventId);
             event.eventTitle = eventTitle || event.eventTitle;
@@ -56,7 +55,9 @@ class EventController {
             event.reminder = reminder || event.reminder;
             event.colour = colour || event.colour;
             event.userId = userId || event.userId;
-            res.status(202).json(event);
+            const result = await event.update()
+            const newEvent = await Event.getById(result.eventId);
+            res.status(202).json(newEvent);
         } catch (error) {
             res.status(404).json({ error: "Event not found." });
         }
@@ -72,8 +73,6 @@ class EventController {
             res.status(404).json({ error: "Event not found." });
         }
     }
-
 }
-
 
 module.exports = EventController;
