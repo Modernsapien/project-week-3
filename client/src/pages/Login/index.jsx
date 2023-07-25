@@ -1,4 +1,4 @@
-import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { LoginForm } from "../../components";
 
 export default function Login() {
@@ -6,8 +6,8 @@ export default function Login() {
   return (
     <>
         <div className="wrapper">
-            <div className=" container main">
-                <div className="row">
+            <div className="container main">
+                <div className="row login">
                     <div className="col-md-6 side-image">
                         <img src="src/assets/logo.png" alt=""/>
                     </div>

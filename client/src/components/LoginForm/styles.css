@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; 
+    min-height: 100vh;
 }
 
 header, span {
@@ -19,6 +19,10 @@ header, span {
 
 header {
     font-size: 25px;
+}
+
+form input[type="text"] {
+    border: none;
 }
 
 .side-image {
@@ -115,7 +119,7 @@ span a:hover {
 }
 
 @media only screen and (max-width: 767px){
-    .row {
+    .login {
         max-width:420px;
         width: 100%;
     }
@@ -130,7 +134,7 @@ span a:hover {
     }
 
     .input-box header {
-        margin-top: 100px;
+        margin-top: 200px;
     }
 
     .small-logo {

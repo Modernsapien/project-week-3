@@ -37,7 +37,7 @@ const Calendar = () => {
   }, []);
   return (
     <div className="calendar-paged-body">
-      <div className="container">
+      <div className="container-events">
         <CalendarComponent events={events} />
       </div>
       <div className="edit-section">

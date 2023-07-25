@@ -3,7 +3,7 @@
   gap: 40px;
   justify-content: space-evenly;
 }
-.container {
+.container-events {
   width: 70%;
   height: 100vh;
   overflow: scroll;
