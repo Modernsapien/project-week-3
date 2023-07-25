@@ -25,7 +25,7 @@ const CalendarComponent = ({ events }) => {
               <div
                 className="item"
                 key={index}
-                style={{ background: item.color }}
+                style={{ background: item.color || "transparent" }}
               >
                 <DefaultMonthlyEventItem
                   title={item.title}

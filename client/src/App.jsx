@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import {
@@ -11,10 +10,6 @@ import {
   Signup,
 } from "./pages";
 import { AuthProvider } from "./contexts";
-
-
-
-
 
 function App() {
   return (
