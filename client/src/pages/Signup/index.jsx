@@ -1,11 +1,12 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { SignupForm } from "../../components";
 
 export default function Signup() {
   return (
     <>
         <div className="signup-wrapper">
-            <div className=" container main">
-                <div className="row">
+            <div className="container main">
+                <div className="row signup">
                     <div className="col-md-6 side-image">
                         <img src="src/assets/logo.png" alt=""/>
                     </div>

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=McLaren&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-.register-wrapper .wrapper {
+.wrapper {
     background: #fff;
     padding: 0 20px 0 20px;
 }
@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; 
+    min-height: 100vh;
 }
 
 header, span {
@@ -19,6 +19,10 @@ header, span {
 
 header {
     font-size: 25px;
+}
+
+form input[type="text"] {
+    border: none;
 }
 
 .side-image {
@@ -121,7 +125,7 @@ span a:hover {
 }
 
 @media only screen and (max-width: 767px){
-    .row {
+    .signup {
         max-width:420px;
         width: 100%;
         height: 700px;
@@ -136,8 +140,8 @@ span a:hover {
         font-size: 15px;
     }
 
-    .input-box header {
-        margin-top: 100px;
+    .right .input-box header {
+        margin-top: 150px;
     }
 
     .small-logo {

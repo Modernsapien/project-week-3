@@ -6,6 +6,7 @@ function AddEventForm({ showAddForm, formRef }) {
   const [form, setForm] = useState({
     title: "",
     description: "",
+    duration: "",
     date: "",
     time: "",
   });
@@ -42,13 +43,17 @@ function AddEventForm({ showAddForm, formRef }) {
         </div>
         <div className="input-group">
           <label htmlFor="title">Event Description</label>
-          <input
+          <textarea
             type="text"
             name="description"
             id="description"
             value={form.description}
             onChange={(e) => handleChange(e)}
           />
+        </div>
+        <div className="input-group">
+          <label htmlFor="duration">Duration (mins)</label>
+          <input type="number" name="duration" id="duration" />
         </div>
         <div className="input-group">
           <label htmlFor="date">Date & Time</label>
