@@ -9,11 +9,19 @@ import "./styles.css"
 const Pomodoro = () => {
   const musicSrc = "../../../public/music1.mp3";
   const { isPlaying, handlePlayPause, audioRef } = useMusicPlayer(musicSrc);
-
+  const [isWaveAnimationPaused, setWaveAnimationPaused] = useState(false)
   const [timeLeft, setTimeLeft] = useState(1500);
   const [intervalId, setIntervalId] = useState(null);
   const [quotes, setQuotes] = useState(quotesData);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleAnimationPause = () => {
+    setAnimationPaused((prevIsPaused) => !prevIsPaused);
+  };
+  
+  const handleWaveAnimationPause = () => {
+    setWaveAnimationPaused((prevIsPaused) => !prevIsPaused);
+  };
 
   const updateTimeDisplay = () => {
     const minutes = Math.floor(timeLeft / 60);
@@ -71,13 +79,17 @@ const Pomodoro = () => {
   return (
     <>
       <div className="pomodoro-background">
-        <WaveBackground />
+         <WaveBackground paused={isWaveAnimationPaused} />
         <div>
           <MusicPlayer musicSrc={musicSrc} audioRef={audioRef} />
           <button className="pomo-button" onClick={handlePlayPause}>
             {isPlaying ? "Pause Music" : "Play Music"}
           </button>
+          <button className="pomo-button" onClick={handleWaveAnimationPause}>
+            {isWaveAnimationPaused ? "Resume Waves" : "Pause Waves"}
+          </button>
         </div>
+        
         <div className="timer">
           <div className="buttons">
             <button className="pomo-button" onClick={() => setTime(25)}>Pomodoro</button>

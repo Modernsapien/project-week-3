@@ -53,6 +53,10 @@
     opacity: 0.9;
 }
 
+.wave.paused {
+    animation-play-state: paused;
+  }
+
 @keyframes wave {
     2% {
         transform: translateX(1);
