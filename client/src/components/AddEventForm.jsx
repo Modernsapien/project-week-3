@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useAuth } from "../contexts";
 function AddEventForm({ showAddForm, formRef, setEvents, events }) {
-  const { user } = useAuth();
+  const userId= localStorage.getItem("id")
   const colors = ["#DBEDE0", "#006494", "#F25F5C", "#F7D6E0", "#FDCA40"];
   const [form, setForm] = useState({
     eventTitle: "",
@@ -35,7 +35,7 @@ function AddEventForm({ showAddForm, formRef, setEvents, events }) {
       body: JSON.stringify({
         ...form,
         dateTime: new Date(dateTime),
-        userId: user.userId,
+        userId: userId,
       }),
     });
     if (res.ok) {
