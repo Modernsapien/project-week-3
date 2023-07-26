@@ -1,9 +1,29 @@
 import "./style.css";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../contexts"
+import { useEffect, useState } from "react";
 function Dashboard() {
-  const { user } = useAuth();
-  
+  const userId = localStorage.getItem("id");
+  const [nextEvent, setNextEvent] = useState();
+  useEffect(() => {
+    async function getEvents() {
+      const apiURL = `http://localhost:3000/event/user/${userId}`;
+      console.log(apiURL);
+
+      const res = await fetch(apiURL);
+      const data = await res.json();
+      const sorted = data.sort(
+        (a, b) => new Date(a.dateTime) - new Date(b.dateTime)
+      );
+      for (let i = 0; i < sorted.length; i++) {
+        if (new Date(sorted[i].dateTime) > new Date()) {
+          setNextEvent(sorted[i]);
+          return;
+        }
+      }
+    }
+    getEvents();
+  }, []);
+
   return (
     <div className="dashboard-body-container">
       <img
@@ -14,9 +34,44 @@ function Dashboard() {
       <div className="directory-section">
         <h1 className="welcome-title">Welcome to StudyWise.</h1>
         <h3 className="welcome-subtitle">Your Ultimate revision ToolBox</h3>
-        <Link to="/calendar">Check Calendar</Link>
-        <Link to="/todo">Make a Todo List for today</Link>
-        <Link to="/pomodoro">Start your revision sprint</Link>
+        {nextEvent && (
+          <div className="next-event">
+            <h1 className="next-event-header">Next Event:</h1>
+            <p className="next-event-title">{nextEvent.eventTitle}</p>
+            <p className="next-event-count">
+              {Math.floor(
+                (new Date(nextEvent.dateTime).getTime() -
+                  new Date().getTime()) /
+                  86400000
+              ) > 1
+                ? `${Math.floor(
+                    (new Date(nextEvent.dateTime).getTime() -
+                      new Date().getTime()) /
+                      86400000
+                  )} days left`
+                : Math.floor(
+                    (new Date(nextEvent.dateTime).getTime() -
+                      new Date().getTime()) /
+                      86400000
+                  ) == 1
+                ? `${Math.floor(
+                    (new Date(nextEvent.dateTime).getTime() -
+                      new Date().getTime()) /
+                      86400000
+                  )} day left`
+                : "<1 day left"}
+            </p>
+          </div>
+        )}
+        <Link to="/calendar" className="nav-button">
+          Check Calendar
+        </Link>
+        <Link to="/todo" className="nav-button">
+          Make a Todo List for today
+        </Link>
+        <Link to="/pomodoro" className="nav-button">
+          Start your revision sprint
+        </Link>
       </div>
     </div>
   );

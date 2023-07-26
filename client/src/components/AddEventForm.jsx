@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { useAuth } from "../contexts";
+
 function AddEventForm({ showAddForm, formRef, setEvents, events }) {
-  const userId= localStorage.getItem("id")
+  const userId = localStorage.getItem("id");
   const colors = ["#DBEDE0", "#006494", "#F25F5C", "#F7D6E0", "#FDCA40"];
   const [form, setForm] = useState({
     eventTitle: "",
@@ -41,7 +41,21 @@ function AddEventForm({ showAddForm, formRef, setEvents, events }) {
     if (res.ok) {
       alert("New event is added");
       const data = await res.json();
-      setEvents([...events, data]);
+      setEvents(
+        [...events, data].sort(
+          (a, b) => new Date(a.dateTime) - new Date(b.dateTime)
+        )
+      );
+      setForm({
+        eventTitle: "",
+        eventDescription: "",
+        duration: "",
+        date: "",
+        time: "",
+        color: "",
+        reminder: true,
+        userId: "",
+      });
       formRef.current.close();
     }
   }

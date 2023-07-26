@@ -9,14 +9,38 @@
 }
 .welcome-title {
   font-size: 3rem;
+  margin-top: 4rem;
 }
 .welcome-subtitle {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
 }
 
-/* a {
+.nav-button {
   display: block;
-  background-color: blue;
+  background-color: rgb(52, 52, 105);
   padding: 1.5rem;
   color: white;
-} */
+  margin: 1rem;
+  border-radius: 15px;
+  transition: all 0.2s;
+}
+
+.nav-button:hover {
+  background-color: white;
+  color: rgb(52, 52, 105);
+  outline: solid 2px rgb(52, 52, 105);
+}
+.next-event {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+  margin-block: 3rem;
+}
+.next-event-header,
+.next-event-title,
+.next-event-count {
+  font-size: 1.3rem;
+  color: grey;
+}
