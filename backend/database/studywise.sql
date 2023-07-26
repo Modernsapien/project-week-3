@@ -65,3 +65,5 @@ INSERT INTO todos (todo_title, todo_description, is_finished, user_id) VALUES
 
 
 
+    (8, 'Michael', 'Lee', 'yfchauhk@gmail.com', 'mlee', '$2b$10$WxMO5IfOSvvsNi4rDsPc9uEH.I4y1MuGj6W8.sFyTEq48.maIVuLu', true),
+    (1, 'Anthony', 'Chan', 'anthonychan1211@gmail.com', 'anthony', '$2b$10$ESylvA.25PVWUQQk/jLfd.FHiju/U.mxb4pnKxevyY0OYtj8dO3a6', true);
