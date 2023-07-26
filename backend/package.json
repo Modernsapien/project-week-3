@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --setupFiles ./__tests__/integration/config.js",
     "dev": "nodemon -L ./index.js",
     "setup-db": "node ./database/setup-db.js",
     "cypress:open": "cypress open",
