@@ -94,7 +94,7 @@ class Event {
     }
 
     async delete() {
-        await db.query("DELETE FROM events WHERE event_id = $1", [this.id]);
+        await db.query("DELETE FROM events WHERE event_id = $1", [this.eventId]);
     }
 }
 
