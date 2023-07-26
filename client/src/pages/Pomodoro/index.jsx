@@ -15,10 +15,8 @@ const Pomodoro = () => {
   const [quotes, setQuotes] = useState(quotesData);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleAnimationPause = () => {
-    setAnimationPaused((prevIsPaused) => !prevIsPaused);
-  };
   
+
   const handleWaveAnimationPause = () => {
     setWaveAnimationPaused((prevIsPaused) => !prevIsPaused);
   };
@@ -78,7 +76,7 @@ const Pomodoro = () => {
 
   return (
     <>
-      <div className="pomodoro-background">
+      <div className={`pomodoro-background ${isWaveAnimationPaused ? "paused" : ""}`}>
          <WaveBackground paused={isWaveAnimationPaused} />
         <div>
           <MusicPlayer musicSrc={musicSrc} audioRef={audioRef} />
