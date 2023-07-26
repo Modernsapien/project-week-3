@@ -28,7 +28,6 @@ class UserController {
     const { username } = req.body;
     try {
       const user = await User.getByUsername(username);
-      console.log(user);
       res.status(200).json(user);
     } catch (error) {
       console.log(error);
@@ -41,7 +40,6 @@ class UserController {
 
     try {
       const user = await User.getByEmail(email);
-      console.log(user);
       res.status(200).json(user);
     } catch (error) {
       console.log(error);
@@ -85,10 +83,8 @@ class UserController {
       const salt = await bcrypt.genSalt(rounds);
       data.password = await bcrypt.hash(data.password, salt);
       const result = await User.create(data);
-      console.log({ result });
       const verificationToken = (await Verification.create(result.id)).token;
       const url = `${process.env.BASE_URL}checkEmailToken/?token=${verificationToken}`;
-      console.log({ url });
       const sgApiKey = process.env.SENDGRID_API_KEY;
       sgMail.setApiKey(sgApiKey);
 
@@ -109,7 +105,6 @@ class UserController {
 
   static async login(req, res) {
     const data = req.body;
-    console.log(data);
     try {
       const user = await User.getByUsername(data.username);
       const authenticated = await bcrypt.compare(data.password, user.password);

@@ -43,7 +43,6 @@ class User {
     if (response.rows.length !== 1) {
       throw new Error("Unable to locate user.");
     }
-    console.log(response.rows);
     return new User(response.rows[0]);
   }
 
