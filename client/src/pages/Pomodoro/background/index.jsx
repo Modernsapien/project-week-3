@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function waveBackground() {
+export default function WaveBackground({ paused }) {
   return (
     <>
-      <div className="wave"></div>
-      <div className="wave"></div>
-      <div className="wave"></div>
+      <div className={`wave ${paused ? "paused" : ""}`}></div>
+      <div className={`wave ${paused ? "paused" : ""}`}></div>
+      <div className={`wave ${paused ? "paused" : ""}`}></div>
     </>
   );
 }

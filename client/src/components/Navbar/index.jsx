@@ -1,18 +1,18 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { Link, NavLink, Outlet } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import "./styles.css";
 
 function Navigation() {
-  
   let activeStyle = {
-    textDecoration: "underline"
+    textDecoration: "underline",
   };
 
   return (
     <>
+
     <Navbar expand="lg">
       <Container>
         <Navbar.Brand href="/"><img src="src/assets/logo.png" alt=""/>
@@ -24,16 +24,17 @@ function Navigation() {
            
           </Nav>
           <Nav className="ml-auto" activeKey={location.pathname}>
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/calendar">Calendar</Nav.Link>
-            <Nav.Link href="/todo">Todo</Nav.Link>
-            <Nav.Link href="/pomodoro">Pomodoro</Nav.Link>
-            <Nav.Link href="login">Logout</Nav.Link>
+            <NavLink to="/" className='linkStyle' style={({isActive}) => (isActive ? activeStyle : undefined)}>Home</NavLink>
+            <NavLink to="/calendar" className='linkStyle' style={({isActive}) => (isActive ? activeStyle : undefined)}>Calendar</NavLink>
+            <NavLink to="/todo" className='linkStyle' style={({isActive}) => (isActive ? activeStyle : undefined)}>Todo</NavLink>
+            <NavLink to="/pomodoro" className='linkStyle' style={({isActive}) => (isActive ? activeStyle : undefined)}>Pomodoro</NavLink>
+            <NavLink to="login" className='linkStyle'>Logout</NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
     <Outlet />
+
     </>
   );
 }
