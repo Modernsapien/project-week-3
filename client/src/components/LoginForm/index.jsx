@@ -34,6 +34,8 @@ export default function LoginForm() {
         });
         // set token to local storage
         localStorage.setItem("token", data.token);
+        localStorage.setItem("id", data.user.id);
+
         navigate("/");
       }
     }

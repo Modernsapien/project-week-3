@@ -2,18 +2,15 @@ import CalendarComponent from "../../components/CalendarComponent";
 import { useState, useRef, useEffect } from "react";
 import "./style.css";
 import AddEventForm from "../../components/AddEventForm";
-import { useAuth } from "../../contexts";
 const Calendar = () => {
   const [showAddForm, setShowAddForm] = useState(false);
   const formRef = useRef(showAddForm);
   const [events, setEvents] = useState([]);
-  const { user } = useAuth();
-
-  console.log(user);
+  const userId = localStorage.getItem("id");
 
   useEffect(() => {
     async function getEvents() {
-      const apiURL = `http://localhost:3000/event/user/${user.userId}`;
+      const apiURL = `http://localhost:3000/event/user/${userId}`;
       console.log(apiURL);
 
       const res = await fetch(apiURL);
@@ -21,17 +18,16 @@ const Calendar = () => {
       setEvents(events);
     }
     getEvents();
-  }, [user]);
+  }, []);
+
   async function removeEvent(id) {
-    const res = await fetch(`http://localhost:3000/${id}`, {
+    const res = await fetch(`http://localhost:3000/event/${id}`, {
       method: "DELETE",
     });
     if (res.ok) {
       setEvents(events.filter((el) => el.id !== id));
     }
   }
-
-  console.log(events);
 
   return (
     <div className="calendar-paged-body">
@@ -57,18 +53,28 @@ const Calendar = () => {
           <h2 className="upcoming-event-title">Upcoming Events</h2>
           {events.length > 0 &&
             events.map((event, i) => {
+              const dateTime = new Date(event.dateTime).getTime();
+              console.log(event);
               const eventEndTime = new Date(
-                event.date.getTime() + event.duration * 60000
+                new Date(event.dateTime).getTime() + event.duration * 60000
               );
               return (
                 <div key={i} className="event">
                   <div className="info-section">
-                    <p className="event-title">{event.title}</p>
+                    <p className="event-title">{event.eventTitle}</p>
                     <p className="date-time">
-                      {event.date.getFullYear()}-{event.date.getMonth() + 1}-
-                      {event.date.getDate()}{" "}
-                      {event.date.getHours().toString().padStart(2, "0")}:
-                      {event.date.getMinutes().toString().padStart(2, "0")}{" "}
+                      {new Date(dateTime).getFullYear()}-
+                      {new Date(dateTime).getMonth() + 1}-
+                      {new Date(dateTime).getDate()}{" "}
+                      {new Date(dateTime)
+                        .getHours()
+                        .toString()
+                        .padStart(2, "0")}
+                      :
+                      {new Date(dateTime)
+                        .getMinutes()
+                        .toString()
+                        .padStart(2, "0")}{" "}
                       {event.duration &&
                         `- ${eventEndTime
                           .getHours()
@@ -81,7 +87,7 @@ const Calendar = () => {
                   </div>
                   <button
                     className="remove-event"
-                    onClick={() => removeEvent(event.id)}
+                    onClick={() => removeEvent(event.eventId)}
                   >
                     <svg
                       fill="#ff0000"
