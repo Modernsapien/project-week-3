@@ -8,6 +8,8 @@ const tokenRoutes = require("./routers/tokenRoutes");
 
 const eventRoutes = require("./routers/eventRoutes");
 
+const todoRoutes = require("./routers/todoRoutes");
+
 const api = express();
 
 api.use(cors());
@@ -19,6 +21,8 @@ api.use("/user", userRoutes);
 api.use("/token", tokenRoutes);
 
 api.use("/event", eventRoutes);
+
+api.use("/todos", todoRoutes);
 
 api.get("/", (req, res) => {
   res.json({ message: "Server is running" });
