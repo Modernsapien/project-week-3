@@ -53,7 +53,7 @@ class Todo {
     async update() {
         const query =
             "UPDATE todos SET todo_title = $1, todo_description = $2, is_finished = $3 , user_id = $4 " +
-            "WHERE event_id = $5";
+            "WHERE todo_id = $5";
         const values = [
             this.todoTitle,
             this.todoDescription,

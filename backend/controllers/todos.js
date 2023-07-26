@@ -42,7 +42,7 @@ class TodoController {
             todo.isFinished = isFinished || todo.isFinished;
             todo.userId = userId || todo.userId;
             const result = await todo.update()
-            const newTodo = await Todo.getById(result.todoId);
+            const newTodo = await Todo.getByTodoId(result.todoId);
             res.status(202).json(newTodo);
         } catch (error) {
             res.status(404).json({ error: "Todo not found." });
