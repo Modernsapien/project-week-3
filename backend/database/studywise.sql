@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS events CASCADE;
 DROP TABLE IF EXISTS todos CASCADE;
 
 CREATE TABLE users (
-    user_idmSERIAL PRIMARY KEY,
+    user_id SERIAL PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR (255) UNIQUE NOT NULL,
@@ -44,3 +44,7 @@ CREATE TABLE todos(
     is_finished BOOLEAN NOT NULL,
     user_id INT REFERENCES users(user_id) ON DELETE CASCADE
 );
+
+INSERT INTO users (user_id, first_name, last_name, email, username, password, is_verified)
+VALUES
+    (8, 'Michael', 'Lee', 'yfchauhk@gmail.com', 'mlee', '$2b$10$WxMO5IfOSvvsNi4rDsPc9uEH.I4y1MuGj6W8.sFyTEq48.maIVuLu', true);
