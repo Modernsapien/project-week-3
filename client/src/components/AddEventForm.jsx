@@ -1,36 +1,50 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-
+import { useAuth } from "../contexts";
 function AddEventForm({ showAddForm, formRef, setEvents, events }) {
+  const { user } = useAuth();
   const colors = ["#DBEDE0", "#006494", "#F25F5C", "#F7D6E0", "#FDCA40"];
   const [form, setForm] = useState({
-    title: "",
-    description: "",
+    eventTitle: "",
+    eventDescription: "",
     duration: "",
     date: "",
     time: "",
     color: "",
+    reminder: true,
+    userId: "",
   });
+
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
   async function handleSubmit(e) {
     e.preventDefault();
-    const apiURL = "";
+    // console.log(form.time.slice(3));
+    const dateTime = new Date(form.date).setHours(
+      form.time.slice(0, 2),
+      form.time.slice(3)
+    );
+
+    const apiURL = "http://localhost:3000/event";
     const res = await fetch(apiURL, {
       method: "POST",
       headers: {
         "Content-Type": "Application/json",
       },
-      body: JSON.stringify(form),
+      body: JSON.stringify({
+        ...form,
+        dateTime: new Date(dateTime),
+        userId: user.userId,
+      }),
     });
     if (res.ok) {
       alert("New event is added");
       const data = await res.json();
       setEvents([...events, data]);
+      formRef.current.close();
     }
   }
-  console.log(form);
   return (
     <dialog open={showAddForm} ref={formRef}>
       <form>
@@ -39,9 +53,9 @@ function AddEventForm({ showAddForm, formRef, setEvents, events }) {
           <label htmlFor="title">Event Title</label>
           <input
             type="text"
-            name="title"
+            name="eventTitle"
             id="title"
-            value={form.title}
+            value={form.eventTitle}
             onChange={(e) => handleChange(e)}
           />
         </div>
@@ -49,15 +63,21 @@ function AddEventForm({ showAddForm, formRef, setEvents, events }) {
           <label htmlFor="title">Event Description</label>
           <textarea
             type="text"
-            name="description"
+            name="eventDescription"
             id="description"
-            value={form.description}
+            value={form.eventDescription}
             onChange={(e) => handleChange(e)}
           />
         </div>
         <div className="input-group">
           <label htmlFor="duration">Duration (mins)</label>
-          <input type="number" name="duration" id="duration" />
+          <input
+            type="number"
+            name="duration"
+            id="duration"
+            value={form.duration}
+            onChange={(e) => handleChange(e)}
+          />
         </div>
         <div className="input-group">
           <label htmlFor="date">Date & Time</label>
@@ -87,6 +107,7 @@ function AddEventForm({ showAddForm, formRef, setEvents, events }) {
               value=""
               id="none"
               onChange={(e) => handleChange(e)}
+              defaultChecked
             />
             <label htmlFor="none">None</label>
           </div>
@@ -111,9 +132,21 @@ function AddEventForm({ showAddForm, formRef, setEvents, events }) {
             );
           })}
         </div>
+        <div className="radio-group">
+          <input
+            type="checkbox"
+            name="reminder"
+            id="reminder"
+            checked={form.reminder}
+            onChange={() => setForm({ ...form, reminder: !form.reminder })}
+          />
+          <label htmlFor="reminder">Reminder</label>
+        </div>
         <div className="button-section">
           <button onClick={handleSubmit}>Submit</button>
-          <button onClick={() => formRef.current.close()}>Cancel</button>
+          <button type="button" onClick={() => formRef.current.close()}>
+            Cancel
+          </button>
         </div>
       </form>
     </dialog>

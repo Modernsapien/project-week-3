@@ -11,23 +11,28 @@ import { useState } from "react";
 import "@zach.codes/react-calendar/dist/calendar-tailwind.css";
 const CalendarComponent = ({ events }) => {
   let [currentMonth, setCurrentMonth] = useState(startOfMonth(new Date()));
-
+  console.log(events);
+  const formattedEvent = events.map((event) => {
+    return {
+      title: event.eventTitle,
+      date: new Date(event.dateTime),
+      color: event.color,
+    };
+  });
   return (
     <MonthlyCalendar
       currentMonth={currentMonth}
       onCurrentMonthChange={(date) => setCurrentMonth(date)}
     >
       <MonthlyNav />
-      <MonthlyBody
-        events={events.length > 0 ? events.sort((a, b) => a.date - b.date) : []}
-      >
+      <MonthlyBody events={formattedEvent}>
         <MonthlyDay
-          renderDay={(data) =>
-            data.map((item, index) => (
+          renderDay={(data) => {
+            return data.map((item, index) => (
               <div
                 className="item"
                 key={index}
-                style={{ background: item.color || "transparent" }}
+                style={{ background: item.color || "#ffffff" }}
               >
                 <DefaultMonthlyEventItem
                   title={item.title}
@@ -35,8 +40,8 @@ const CalendarComponent = ({ events }) => {
                   date={format(item.date, "kk:mm")}
                 />
               </div>
-            ))
-          }
+            ));
+          }}
         />
       </MonthlyBody>
     </MonthlyCalendar>

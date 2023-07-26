@@ -4,6 +4,7 @@ class TokenController {
   static async getOneByToken(req, res) {
     try {
       const { token } = req.body;
+      console.log(token);
       const tokenObj = await Token.getOneByToken(token);
       const user = await User.getById(tokenObj.user_id);
       res.status(200).json(user);
