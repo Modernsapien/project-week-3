@@ -55,7 +55,14 @@ function Navigation() {
               >
                 Pomodoro
               </NavLink>
-              <NavLink to="login" className="linkStyle">
+              <NavLink
+                to="login"
+                className="linkStyle"
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  localStorage.removeItem("id");
+                }}
+              >
                 Logout
               </NavLink>
             </Nav>
