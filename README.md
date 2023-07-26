@@ -84,3 +84,4 @@ Contributions to StudyWise are welcome! If you find any bugs or have suggestions
 ## License
 
 This project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code. Attribution is appreciated but not required.
+
