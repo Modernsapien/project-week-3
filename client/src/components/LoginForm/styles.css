@@ -21,10 +21,6 @@ header {
     font-size: 25px;
 }
 
-form input[type="text"] {
-    border: none;
-}
-
 .side-image {
     position: relative;
 }

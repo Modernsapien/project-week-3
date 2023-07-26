@@ -1,6 +1,4 @@
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import { LoginForm } from "../../components";
 
 export default function Login() {
