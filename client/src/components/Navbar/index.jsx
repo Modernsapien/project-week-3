@@ -1,18 +1,18 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { Link, NavLink, Outlet } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import "./styles.css";
 
 function Navigation() {
-  
   let activeStyle = {
-    textDecoration: "underline"
+    textDecoration: "underline",
   };
 
   return (
     <>
+
     <Navbar expand="lg">
       <Container>
         <Navbar.Brand href="/"><img src="src/assets/logo.png" alt=""/>
@@ -34,6 +34,7 @@ function Navigation() {
       </Container>
     </Navbar>
     <Outlet />
+
     </>
   );
 }
