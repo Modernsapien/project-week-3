@@ -39,7 +39,6 @@ function Todo() {
     localStorage.setItem("taskList", JSON.stringify(tempList));
     setTaskList(tempList);
     setShow(false);
-    window.location.reload();
   }
 
   return (

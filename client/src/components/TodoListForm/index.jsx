@@ -24,6 +24,8 @@ export default function TodoListForm({show, handleClose, save}) {
         taskObj["Name"] = taskName;
         taskObj["Description"] = taskDescription;
         save(taskObj);
+        setTaskName('');
+        setTaskDescription('');
     }
 
   return (

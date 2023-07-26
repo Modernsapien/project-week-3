@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import EditTodoForm from '../EditTodoForm';
 
 export default function TodoListItem({taskObj, index, deleteTask, updateListArray}) {
@@ -30,6 +30,17 @@ export default function TodoListItem({taskObj, index, deleteTask, updateListArra
         }
     ]
 
+    useEffect(() => {
+        const savedStatus = localStorage.getItem(`task_${index}_completed`);
+        if (savedStatus !== null) {
+          setIsChecked(savedStatus === 'true');
+        }
+    }, [index]);
+
+    const updateLocalStorage = (checked) => {
+        localStorage.setItem(`task_${index}_completed`, checked.toString());
+    };
+
     const handleClose = () => {
         setShow(!show);
     }
@@ -43,8 +54,10 @@ export default function TodoListItem({taskObj, index, deleteTask, updateListArra
     }
 
     const handleCheckboxChange = () => {
-        setIsChecked(!isChecked); // Step 3: Toggle the checkbox state on each click
-    };
+        const updatedStatus = !isChecked;
+        setIsChecked(updatedStatus);
+        updateLocalStorage(updatedStatus);
+      };
     
   return (
     <>
@@ -60,9 +73,9 @@ export default function TodoListItem({taskObj, index, deleteTask, updateListArra
                     className="form-check-input"
                     type="checkbox"
                     value=""
-                    id={`flexCheckDefault-${index}`} // Add unique ID to each checkbox based on the index
-                    checked={isChecked} // Step 2: Bind checkbox state to the checked attribute
-                    onChange={handleCheckboxChange} // Step 2: Add the event handler for checkbox change
+                    id={`flexCheckDefault-${index}`} 
+                    checked={isChecked} 
+                    onChange={handleCheckboxChange}
                 />
                     <label className="form-check-label" for="flexCheckDefault">
                         Complete
