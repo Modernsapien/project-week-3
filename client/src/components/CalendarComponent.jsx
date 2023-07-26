@@ -25,7 +25,13 @@ const CalendarComponent = ({ events }) => {
       onCurrentMonthChange={(date) => setCurrentMonth(date)}
     >
       <MonthlyNav />
-      <MonthlyBody events={formattedEvent}>
+      <MonthlyBody
+        events={
+          formattedEvent.length > 0
+            ? formattedEvent.sort((a, b) => a.date - b.date)
+            : []
+        }
+      >
         <MonthlyDay
           renderDay={(data) => {
             return data.map((item, index) => (
