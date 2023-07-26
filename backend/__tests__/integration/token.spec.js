@@ -1,6 +1,6 @@
 const request = require("supertest")
 const app = require("../../api")
-const db = require("../../database/test-db")
+const db = require("../../database/db")
 
 describe("Calendar", () => {
     let api
@@ -16,4 +16,7 @@ describe("Calendar", () => {
         db.end()
         api.close(done)
     })
+
+    //GET ONE BY TOKEN
+    // it("should return a token ")
 })
