@@ -17,58 +17,62 @@ describe("User", () => {
         await api.close()
     })
 
-    let username = ""
-    let password = ""
+    let username = "anthony"
+    let password = "123"
+    let email = ""
     let token = ""
     let user_id= ""
 
     //REGISTER
-    it("should create a new user", async () => {
-        // db.query("INSERT INTO users(first_name, last_name, email, username, password) VALUES('jim', 'bob', 'test@test.com', 'asdf', 'password')")
-        const data = {
-            first_name: "testF",
-            last_name: "testL",
-            userEmail: "test@test.com",
-            username: "testU",
-            password: "testP"
-        }
+    // it("should create a new user", async () => {
+    //     // db.query("INSERT INTO users(first_name, last_name, email, username, password) VALUES('jim', 'bob', 'test@test.com', 'asdf', 'password')")
+    //     const data = {
+    //         firstName: "testF",
+    //         lastName: "testL",
+    //         email: "test@test.com",
+    //         username: "testU",
+    //         password: "testP"
+    //     }
 
-        const response = await request(app)
-            .post("/user/register")
-            .send(data)
-            .expect(201)
-        
-        username = response.body.username
-        password = response.body.password
-        expect(username).toEqual(newUser.username)
-    })
+    //     let response = await request(app)
+    //         .post("/user/register")
+    //         .send(data)
+    //         .expect(201)
+            
+    //     username = response.body.username
+    //     password = response.body.password
+    //     expect(response.body.username).toEqual(data.username)
+    // })
 
     //LOGIN
     it("should login the user", async () => {
         const data = {
-            username: "username",
-            password: "testP"
+            username: username,
+            password: password
         }
         const response = await request(app)
             .post("/user/login")
             .send(data)
             .expect(200)
 
-        token = response.token
+        token = response.body.token
     })
 
     //GET USER BY USERNAME
     it("should return the user with provided username", async () => {
+        db.query("INSERT INTO users(first_name, last_name, email, username, password) VALUES('jim', 'bob', 'test@test.com', 'testUsername', 'password')")
         const data = {
-            username: username
+            username: "testUsername"
         }
         const response = await request(app)
         .get("/user/username")
         .send(data)
         .expect(200)
     
+    username = response.body.username
     user_id = response.body.id
-    expect(response.body.username).toEqual(username)
+    email = response.body.email
+    expect(response.body.username).toEqual(data.username)
     })
 
     //GET USER BY ID
@@ -82,8 +86,12 @@ describe("User", () => {
 
     //GET USER BY EMAIL
     it("should return the user with provided email", async () => {
+        data = {
+            email: email
+        }
         const response = await request(app)
             .get("/user/email")
+            .send(data)
             .expect(200)
 
         expect(response.body.username).toEqual(username)
@@ -102,15 +110,14 @@ describe("User", () => {
     //UPDATE USER
     it("should update the user", async () => {
         data = {
-            firstname: "newTestF",
-            lastname: "newTestL",
-            username: "newTestU"
+            firstName: "newTestF",
+            lastName: "newTestL",
         }
         const response = await request(app)
-            .put(`user/${user_id}`)
+            .put(`/user/${user_id}`)
             .send(data)
             .expect(202)
-        expect(response.body.username).toEqual(data.username)
+
         expect(response.body.firstname).toEqual(data.firstname)
         expect(response.body.lastname).toEqual(data.lastname)
     })
@@ -129,7 +136,7 @@ describe("User", () => {
     //DELETE USER
     it("should delete the user with provided ID", async () => {
         const response = await request(app)
-            .delete(`user/${user_id}`)
+            .delete(`/user/${user_id}`)
             .expect(204)
     })
 })

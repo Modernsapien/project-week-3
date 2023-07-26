@@ -105,7 +105,7 @@ describe("Calendar", () => {
         testData.eventDescription = "newTestDescription"
 
         const response = await request(app)
-            .put(`/event/${event_id}`)
+            .patch(`/event/${event_id}`)
             .send(testData)
             .expect(202)
 
