@@ -11,7 +11,7 @@ export default function Login() {
         <div className="container main">
           <div className="row login">
             <div className="col-md-6 side-image">
-              <img src="src/assets/logo.png" alt="" />
+              <img src="./src/assets/logo.png" alt="" />
             </div>
             <div className="col-md-6 right">
               <div className="small-logo">
