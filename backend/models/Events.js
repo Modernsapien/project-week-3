@@ -10,7 +10,7 @@ class Event {
         date_time,
         duration,
         reminder,
-        colour,
+        color,
         user_id,
     }) {
         this.eventId = event_id;
@@ -19,7 +19,7 @@ class Event {
         this.dateTime = date_time;
         this.duration = duration;
         this.reminder = reminder;
-        this.colour = colour;
+        this.color = color;
         this.userId = user_id;
     }
 
@@ -62,14 +62,16 @@ class Event {
             dateTime: date_time,
             duration,
             reminder,
-            colour,
+            color,
             userId: user_id
         } = data;
 
+        console.log('Data', data)
+
         const query =
-            "INSERT INTO events (event_title, event_description, date_time, duration, reminder, colour, user_id) " +
+            "INSERT INTO events (event_title, event_description, date_time, duration, reminder, color, user_id) " +
             "VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING event_id";
-        const values = [event_title, event_description, date_time, duration, reminder, colour, user_id];
+        const values = [event_title, event_description, date_time, duration, reminder, color, user_id];
         const response = await db.query(query, values);
         const newId = response.rows[0].event_id;
         return Event.getById(newId);
@@ -77,7 +79,7 @@ class Event {
 
     async update() {
         const query =
-            "UPDATE events SET event_title = $1, event_description = $2, date_time = $3, duration = $4 , reminder = $5, user_id = $6, colour = $7 " +
+            "UPDATE events SET event_title = $1, event_description = $2, date_time = $3, duration = $4 , reminder = $5, user_id = $6, color = $7 " +
             "WHERE event_id = $8";
         const values = [
             this.eventTitle,
@@ -86,7 +88,7 @@ class Event {
             this.duration,
             this.reminder,
             this.userId,
-            this.colour,
+            this.color,
             this.eventId
         ];
         await db.query(query, values);
