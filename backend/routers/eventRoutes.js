@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get("/", EventController.getAllEvents);
 router.get("/search", EventController.searchEvent);
+router.get("/user/:userId", EventController.getEventByUserId);
 router.get("/:id", EventController.getEventById);
 
 router.post("/", EventController.createEvent);

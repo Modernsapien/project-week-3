@@ -1,6 +1,6 @@
 const request = require("supertest")
 const app = require("../api")
-const db = require("../database/db")
+const db = require("../database/test-db")
 
 describe("User", () => {
     let api
@@ -100,9 +100,35 @@ describe("User", () => {
 
     //UPDATE USER
     it("should update the user", async () => {
+        data = {
+            firstname: "newTestF",
+            lastname: "newTestL",
+            username: "newTestU"
+        }
         const response = await request(app)
             .put(`user/${user_id}`)
             .send(data)
             .expect(202)
+        expect(response.body.username).toEqual(data.username)
+        expect(response.body.firstname).toEqual(data.firstname)
+        expect(response.body.lastname).toEqual(data.lastname)
+    })
+
+    //LOGOUT
+    it("should logout the user", async () => {
+        heraders = {
+            authorization: token
+        }
+        const response = await request(app)
+            .get("/user/logout")
+            .set(headers)
+            .expect(200)
+    })
+
+    //DELETE USER
+    it("should delete the user with provided ID", async () => {
+        const response = await request(app)
+            .delete(`user/${user_id}`)
+            .expect(204)
     })
 })

@@ -7,7 +7,8 @@
     "test": "jest",
     "dev": "nodemon -L ./index.js",
     "setup-db": "node ./database/setup-db.js",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "setup-test-db": "node ./database/setup-test-db.js"
   },
   "jest": {
     "collectCoverage": true,

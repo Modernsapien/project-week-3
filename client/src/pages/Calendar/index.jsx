@@ -2,49 +2,35 @@ import CalendarComponent from "../../components/CalendarComponent";
 import { useState, useRef, useEffect } from "react";
 import "./style.css";
 import AddEventForm from "../../components/AddEventForm";
+import { useAuth } from "../../contexts"
 const Calendar = () => {
   const [showAddForm, setShowAddForm] = useState(false);
   const formRef = useRef(showAddForm);
-  const [events, setEvents] = useState([
-    {
-      id: 1,
-      title: "See Johnkdjfhlskjd hgajshdflakjdsh",
-      description: "123",
-      date: new Date("2023-07-30T21:15"),
-      color: "red",
-    },
-    { id: 2, title: "See John", date: new Date("2023-07-30T21:15") },
-    {
-      id: 3,
-      title: "See John",
-      description: "123",
-      date: new Date("2023-07-30T21:15"),
-      duration: 120,
-    },
-    {
-      id: 4,
-      title: "Call John",
-      description: "123",
-      date: new Date("2023-07-30T08:04"),
-    },
-    { id: 5, title: "Meeting with Bob", description: "123", date: new Date() },
-  ]);
+  const [events, setEvents] = useState([]);
+  const { user } = useAuth();
 
+  console.log(user)
+  
   useEffect(() => {
     async function getEvents() {
-      const apiURL = "";
+      const apiURL = `http://localhost:3000/event/user/${user.userId}`;
+      console.log(apiURL)
+
       const res = await fetch(apiURL);
       const events = await res.json();
       setEvents(events);
     }
-    // getEvents();
-  }, []);
+    getEvents();
+  }, [user]);
   async function removeEvent(id) {
     // const res = await fetch(`http://localhost:3000/${id}`, {
     //   method: "DELETE",
     // });
     setEvents(events.filter((el) => el.id !== id));
   }
+
+  console.log(events)
+
   return (
     <div className="calendar-paged-body">
       <div className="container-events">
