@@ -81,11 +81,12 @@ class UserController {
     const rounds = parseInt(process.env.BCRYPT_SALT_ROUNDS);
     try {
       const data = req.body;
+
       const salt = await bcrypt.genSalt(rounds);
       data.password = await bcrypt.hash(data.password, salt);
       const result = await User.create(data);
+      console.log({ result });
       const verificationToken = (await Verification.create(result.id)).token;
-
       const url = `${process.env.BASE_URL}checkEmailToken/?token=${verificationToken}`;
       console.log({ url });
       const sgApiKey = process.env.SENDGRID_API_KEY;
