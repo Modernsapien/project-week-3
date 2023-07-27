@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import MusicPlayer from "./handleMusic/musicPlayer";
 import useMusicPlayer from "./handleMusic/useMusicPlayer";
 import WaveBackground from "./background";
 import "./background/pomodoro.css";
 import quotesData from "./quotes/quotes.json";
-import "./styles.css"
+import "./styles.css";
 
 const Pomodoro = () => {
   const musicSrc = "../../../public/music1.mp3";
   const { isPlaying, handlePlayPause, audioRef } = useMusicPlayer(musicSrc);
-  const [isWaveAnimationPaused, setWaveAnimationPaused] = useState(false)
+  const [isWaveAnimationPaused, setWaveAnimationPaused] = useState(false);
   const [timeLeft, setTimeLeft] = useState(1500);
   const [intervalId, setIntervalId] = useState(null);
   const [quotes, setQuotes] = useState(quotesData);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  
 
   const handleWaveAnimationPause = () => {
     setWaveAnimationPaused((prevIsPaused) => !prevIsPaused);
@@ -76,29 +74,45 @@ const Pomodoro = () => {
 
   return (
     <>
-      <div className={`pomodoro-background ${isWaveAnimationPaused ? "paused" : ""}`}>
-         <WaveBackground paused={isWaveAnimationPaused} />
+      <div
+        className={`pomodoro-background ${
+          isWaveAnimationPaused ? "paused" : ""
+        }`}
+      >
+        <WaveBackground paused={isWaveAnimationPaused} />
         <div>
           <MusicPlayer musicSrc={musicSrc} audioRef={audioRef} />
-          <button className="pomo-button" onClick={handlePlayPause}>
-            {isPlaying ? "Pause Music" : "Play Music"}
-          </button>
-          <button className="pomo-button" onClick={handleWaveAnimationPause}>
-            {isWaveAnimationPaused ? "Resume Waves" : "Pause Waves"}
-          </button>
+          <div className="control-button-section">
+            <button className="pomo-button" onClick={handlePlayPause}>
+              {isPlaying ? "Pause Music" : "Play Music"}
+            </button>
+            <button className="pomo-button" onClick={handleWaveAnimationPause}>
+              {isWaveAnimationPaused ? "Resume Waves" : "Pause Waves"}
+            </button>
+          </div>
         </div>
-        
+
         <div className="timer">
           <div className="buttons">
-            <button className="pomo-button" onClick={() => setTime(25)}>Pomodoro</button>
-            <button className="pomo-button" onClick={() => setTime(5)}>Short Break</button>
-            <button className="pomo-button" onClick={() => setTime(15)}>Long Break</button>
+            <button className="pomo-button" onClick={() => setTime(25)}>
+              Pomodoro
+            </button>
+            <button className="pomo-button" onClick={() => setTime(5)}>
+              Short Break
+            </button>
+            <button className="pomo-button" onClick={() => setTime(15)}>
+              Long Break
+            </button>
           </div>
           <div className="display">
             <span id="time">25:00</span>
           </div>
           <div className="controls">
-            <button className="pomo-button" id="startStop" onClick={startStopTimer}>
+            <button
+              className="pomo-button"
+              id="startStop"
+              onClick={startStopTimer}
+            >
               {intervalId ? "Stop" : "Start"}
             </button>
           </div>
