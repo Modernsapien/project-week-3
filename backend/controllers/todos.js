@@ -12,13 +12,33 @@ class TodoController {
         }
     }
 
-    static async getTodosByUserId(req, res) {
+    static async getAllTodosByUserId(req, res) {
         const { userId } = req.params;
         try {
-            const todos = await Todo.getByUserId(userId);
+            const todos = await Todo.getAllByUserId(userId);
             res.status(200).json(todos);
         } catch (error) {
             res.status(404).json({ error: "No Todos item available." });
+        }
+    }
+
+    static async getCompletedTodosByUserId(req, res) {
+        const { userId } = req.params;
+        try {
+            const todos = await Todo.getCompletedByUserId(userId);
+            res.status(200).json(todos);
+        } catch (error) {
+            res.status(404).json({ error: "No completed Todos item available." });
+        }
+    }
+
+    static async getIncompletedTodosByUserId(req, res) {
+        const { userId } = req.params;
+        try {
+            const todos = await Todo.getIncompletedByUserId(userId);
+            res.status(200).json(todos);
+        } catch (error) {
+            res.status(404).json({ error: "No incompleted Todos item available." });
         }
     }
 
