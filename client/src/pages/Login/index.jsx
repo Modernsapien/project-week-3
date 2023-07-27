@@ -1,11 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import image from "../../assets/logo.png";
 import { LoginForm } from "../../components";
+import WaveBackground from "../Pomodoro/background";
 
 export default function Login() {
   return (
     <>
       <div className="wrapper">
+        <WaveBackground paused={false} />
         <div className="container main">
           <div className="row login">
             <div className="col-md-6 side-image">
