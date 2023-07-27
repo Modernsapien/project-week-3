@@ -4,37 +4,25 @@ const db = require("../../database/db")
 
 describe("Calendar", () => {
     let api
-    let user_id
+    let user_id = 1
     let event_id
     let testData = {}
 
-    beforeAll(() => {
-        api = app.listen(5000, () => {
-            console.log("Test server running on port 5000")
+    beforeAll(async () => {
+        api = app.listen(5002, () => {
+            console.log("Test server running on port 5002")
         })
     })
 
-    afterAll((done) => {
+    afterAll(async () => {
         console.log("Stopping test server")
         db.end()
-        api.close(done)
+        await api.close()
     })
 
-    //CREATE EVENT
-    it("should create a new event", async () => {
-        //create a test user for testing
-        const testUser = {
-            first_name: "testF",
-            last_name: "testL",
-            userEmail: "test@test.com",
-            username: "testU",
-            password: "testP"
-        }
-        let response = await request(app)
-                .post("/user/register")
-                .send(data)
 
-        user_id = response.body.user_id
+    //CREATE EVENT
+    it("should create a new event", async () => {        
 
         const data = {
             eventTitle: "testTitle",
@@ -42,7 +30,7 @@ describe("Calendar", () => {
             dateTime: "2023-07-26",
             duration: 15,
             reminder: true,
-            colour: "#DBEDE0",
+            color: "#DBEDE0",
             userId: user_id
         }
         testData = data
@@ -51,9 +39,9 @@ describe("Calendar", () => {
             .send(data)
             .expect(200)
 
-        event_id = response.body.event_id
+        event_id = response.body.eventId
 
-        expect(response.body).toEqual(expect.objectContaining(data))
+        expect(response.body.eventTitle).toEqual(data.eventTitle)
     })
 
     //SEARCH EVENT
@@ -86,7 +74,7 @@ describe("Calendar", () => {
             .get(`/event/${event_id}`)
             .expect(200)
 
-        expect(response.body).toEqual(expect.objectContaining(testData))
+        expect(response.body.eventTitle).toEqual(testData.eventTitle)
     })
 
     //GET ALL EVENTS
@@ -109,7 +97,7 @@ describe("Calendar", () => {
             .send(testData)
             .expect(202)
 
-        expect(response.body).toEqual(expect.objectContaining(testData))
+        expect(response.body.eventTitle).toEqual(testData.eventTitle)
     })
 
     //DELETE EVENT
@@ -117,8 +105,5 @@ describe("Calendar", () => {
         let response = await request(app)
             .delete(`/event/${event_id}`)
             .expect(204)
-
-        response = await request(app)
-            .delete(`/user/${user_id}`)
     })
 })

@@ -7,7 +7,7 @@ describe("User", () => {
 
     beforeAll(async () => {
         api = app.listen(5001, () => {
-            console.log("Test server running on port 5000")
+            console.log("Test server running on port 5001")
         })
     })
 
@@ -23,27 +23,7 @@ describe("User", () => {
     let token = ""
     let user_id= ""
 
-    //REGISTER
-    // it("should create a new user", async () => {
-    //     // db.query("INSERT INTO users(first_name, last_name, email, username, password) VALUES('jim', 'bob', 'test@test.com', 'asdf', 'password')")
-    //     const data = {
-    //         firstName: "testF",
-    //         lastName: "testL",
-    //         email: "test@test.com",
-    //         username: "testU",
-    //         password: "testP"
-    //     }
-
-    //     let response = await request(app)
-    //         .post("/user/register")
-    //         .send(data)
-    //         .expect(201)
-            
-    //     username = response.body.username
-    //     password = response.body.password
-    //     expect(response.body.username).toEqual(data.username)
-    // })
-
+    
     //LOGIN
     it("should login the user", async () => {
         const data = {
@@ -138,5 +118,26 @@ describe("User", () => {
         const response = await request(app)
             .delete(`/user/${user_id}`)
             .expect(204)
+    })
+
+    //REGISTER
+    it("should create a new user", async () => {
+        // db.query("INSERT INTO users(first_name, last_name, email, username, password) VALUES('jim', 'bob', 'test@test.com', 'asdf', 'password')")
+        const data = {
+            firstName: "testF",
+            lastName: "testL",
+            email: "test@test.com",
+            username: "testU",
+            password: "testP"
+        }
+
+        let response = await request(app)
+            .post("/user/register")
+            .send(data)
+            .expect(201)
+            
+        // username = response.body.username
+        // password = response.body.password
+        // expect(response.body.username).toEqual(data.username)
     })
 })
