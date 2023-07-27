@@ -27,6 +27,7 @@
 
 .navbar-nav > .linkStyle.active {
   color: #fff;
+ 
 }
 
 .navbar img {
@@ -42,3 +43,8 @@
   background-color: transparent;
   border: none;
 }
+ .container{
+  margin: 0px;
+ }
+
+

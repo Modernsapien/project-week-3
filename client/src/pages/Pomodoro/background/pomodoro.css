@@ -3,7 +3,7 @@
 }
 .pomodoro-background {
     margin: 0;
-    min-height: 100vh;
+    min-height: 87vh;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     overflow: auto;
     background: linear-gradient(315deg, #bdede0 3%, #fdca40 38%, #f25f5c 68%, #f7d6e0 98%);

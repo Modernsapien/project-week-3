@@ -15,7 +15,7 @@ function Navigation() {
       <Navbar expand="lg">
         <Container>
           <Navbar.Brand href="/">
-            <img src="src/assets/logo.png" alt="" />
+            <img src="https://i.imgur.com/APlwr5r.png" alt="" />
             <p className="brand">
               Study<b>Wise</b>
             </p>
