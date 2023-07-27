@@ -81,14 +81,12 @@ class UserController {
     const rounds = parseInt(process.env.BCRYPT_SALT_ROUNDS);
     try {
       const data = req.body;
-
       const salt = await bcrypt.genSalt(rounds);
       data.password = await bcrypt.hash(data.password, salt);
       const result = await User.create(data);
       console.log({ result });
       const verificationToken = (await Verification.create(result.id)).token;
       const url = `${process.env.BASE_URL}checkEmailToken/?token=${verificationToken}`;
-      console.log({ url });
       const sgApiKey = process.env.SENDGRID_API_KEY;
       sgMail.setApiKey(sgApiKey);
 
@@ -101,6 +99,7 @@ class UserController {
           <h6 style="font-size: 18px">Please verify your email by clicking the button:</h6>
           <a style="margin-top:1em; padding: 1em; background-color: #33b249; text-decoration: none ; color: white" href="${url}"> Verify Your Email</a></div>`,
       });
+      console.log("run");
       res.status(201).send(result);
     } catch (error) {
       res.status(400).json({ error: error.message });

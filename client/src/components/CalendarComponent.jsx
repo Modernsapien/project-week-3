@@ -11,14 +11,17 @@ import { useState } from "react";
 import "@zach.codes/react-calendar/dist/calendar-tailwind.css";
 const CalendarComponent = ({ events }) => {
   let [currentMonth, setCurrentMonth] = useState(startOfMonth(new Date()));
-  console.log(events);
-  const formattedEvent = events.length > 0 ? events.map((event) => {
-    return {
-      title: event.eventTitle,
-      date: new Date(event.dateTime),
-      color: event.color,
-    };
-  }):[];
+
+  const formattedEvent =
+    events.length > 0
+      ? events.map((event) => {
+          return {
+            title: event.eventTitle,
+            date: new Date(event.dateTime),
+            color: event.color,
+          };
+        })
+      : [];
   return (
     <MonthlyCalendar
       currentMonth={currentMonth}

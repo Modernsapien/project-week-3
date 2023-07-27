@@ -15,18 +15,19 @@ const Calendar = () => {
 
       const res = await fetch(apiURL);
       const events = await res.json();
-      setEvents(events);
+      setEvents(
+        events.sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime))
+      );
     }
     getEvents();
   }, []);
 
   async function removeEvent(id) {
-    const res = await fetch(`http://localhost:3000/event/${id}`, {
+    await fetch(`http://localhost:3000/event/${id}`, {
       method: "DELETE",
     });
-    if (res.ok) {
-      setEvents(events.filter((el) => el.id !== id));
-    }
+    const filtered = events.filter((el) => el.eventId !== id);
+    setEvents([...filtered]);
   }
 
   return (
@@ -54,7 +55,6 @@ const Calendar = () => {
           {events.length > 0 &&
             events.map((event, i) => {
               const dateTime = new Date(event.dateTime).getTime();
-              console.log(event);
               const eventEndTime = new Date(
                 new Date(event.dateTime).getTime() + event.duration * 60000
               );

@@ -42,9 +42,10 @@ class EventController {
 
   static async createEvent(req, res) {
     const data = req.body;
-    console.log(data);
+
     try {
       const event = await Event.create(data);
+      console.log({ event });
       res.status(200).json(event);
     } catch (error) {
       res.status(404).json({ error: "Cannot create event." });
