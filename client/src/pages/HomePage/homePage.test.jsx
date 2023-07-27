@@ -6,11 +6,11 @@ import { screen, render, cleanup } from '@testing-library/react';
 import matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
 
-import EditTodoForm from "./index";
+import Home from "./index";
 
 describe("SignupForm component", () => {
     beforeEach(() => {
-        render(<EditTodoForm />)
+        render(<Home />)
     })
 
     afterEach(() => {
