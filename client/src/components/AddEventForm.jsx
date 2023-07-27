@@ -158,8 +158,14 @@ function AddEventForm({ showAddForm, formRef, setEvents, events }) {
           <label htmlFor="reminder">Reminder</label>
         </div>
         <div className="button-section">
-          <button onClick={handleSubmit}>Submit</button>
-          <button type="button" onClick={() => formRef.current.close()}>
+          <button onClick={handleSubmit} className="event-submit-button">
+            Submit
+          </button>
+          <button
+            className="event-cancel-button"
+            type="button"
+            onClick={() => formRef.current.close()}
+          >
             Cancel
           </button>
         </div>

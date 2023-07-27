@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-.calendar-paged-body * {
+.calendar-paged-body {
   font-family: "Poppins", sans-serif;
 }
 .calendar-paged-body {
@@ -54,6 +54,10 @@
   padding: 1rem;
   margin: 0 auto;
   border-radius: 15px;
+  transition: all 0.2s;
+}
+.add-event:hover {
+  box-shadow: 0 0 10px #50a7a9;
 }
 dialog {
   padding: 2rem 3rem;
@@ -147,4 +151,27 @@ input[type="time"] {
 input[type="radio"],
 input[type="checkbox"] {
   width: 1rem;
+}
+
+.event-submit-button {
+  background-color: #50a7a9;
+  padding: 1rem 3vw;
+  border-radius: 15px;
+  color: white;
+  transition: all 0.2s;
+}
+.event-cancel-button {
+  outline: solid 2px #50a7a9;
+  padding: 1rem 3vw;
+  border-radius: 15px;
+  color: #50a7a9;
+  transition: all 0.2s;
+}
+.event-submit-button:hover,
+.event-cancel-button:hover {
+  box-shadow: 0 0 10px #50a7a9;
+}
+.no-event-header {
+  font-size: 1.3rem;
+  padding: 1rem;
 }

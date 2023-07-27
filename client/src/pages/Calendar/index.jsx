@@ -36,16 +36,6 @@ const Calendar = () => {
         <CalendarComponent events={events} />
       </div>
       <div className="edit-section">
-        <div style={{ position: "absolute", right: "20px", bottom: "20px" }}>
-          <i
-            className="far fa-edit"
-            style={{
-              cursor: "pointer",
-              marginRight: "10px",
-            }}
-          ></i>
-          <i className="fas fa-trash-alt" style={{ cursor: "pointer" }}></i>
-        </div>
         <button
           type="button"
           className="add-event"
@@ -62,7 +52,7 @@ const Calendar = () => {
         />
         <div className="upcoming-events">
           <h2 className="upcoming-event-title">Upcoming Events</h2>
-          {events.length > 0 &&
+          {events.length > 0 ? (
             events.map((event, i) => {
               const dateTime = new Date(event.dateTime).getTime();
               const eventEndTime = new Date(
@@ -98,18 +88,17 @@ const Calendar = () => {
 
                   <i
                     className="fas fa-trash-alt"
-                    style={{ color: "red", cursor: "pointer" }}
+                    style={{ color: "#F48687", cursor: "pointer" }}
                     onClick={() => removeEvent(event.eventId)}
                   ></i>
                 </div>
               );
-            })}
+            })
+          ) : (
+            <h2 className="no-event-header">No Upcoming Events</h2>
+          )}
         </div>
       </div>
-      <i
-        className="fas fa-trash-alt"
-        style={{ color: "red", cursor: "pointer" }}
-      ></i>
     </div>
   );
 };
