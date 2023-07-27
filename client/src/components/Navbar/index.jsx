@@ -11,11 +11,11 @@ function Navigation() {
   };
 
   return (
-    <>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <Navbar expand="lg">
-        <Container>
+        <Container className="nav-container">
           <Navbar.Brand href="/">
-            <img src="src/assets/logo.png" alt="" />
+            <img src="https://i.imgur.com/APlwr5r.png" alt="" />
             <p className="brand">
               Study<b>Wise</b>
             </p>
@@ -69,8 +69,9 @@ function Navigation() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
       <Outlet />
-    </>
+    </div>
   );
 }
 

@@ -17,7 +17,7 @@ class Todo {
         this.userId = user_id
     }
 
-    static async getByUserId(id) {
+    static async getAllByUserId(id) {
         const response = await db.query("SELECT * FROM todos WHERE user_id = $1", [id]);
         if (response.rows.length == 0) {
             throw new Error("No Todo items found");
@@ -25,10 +25,26 @@ class Todo {
         return response.rows.map((row) => new Todo(row));
     }
 
+    static async getCompletedByUserId(id) {
+        const response = await db.query("SELECT * FROM todos WHERE user_id = $1 AND is_finished = true", [id]);
+        if (response.rows.length == 0) {
+            throw new Error("No completed Todo items found");
+        }
+        return response.rows.map((row) => new Todo(row));
+    }
+
+    static async getIncompletedByUserId(id) {
+        const response = await db.query("SELECT * FROM todos WHERE user_id = $1 AND is_finished = false", [id]);
+        if (response.rows.length == 0) {
+            throw new Error("No incompleted Todo items found");
+        }
+        return response.rows.map((row) => new Todo(row));
+    }
+
     static async getByTodoId(id) {
         const response = await db.query("SELECT * FROM todos WHERE todo_id = $1", [id]);
         if (response.rows.length !== 1) {
-            throw new Error("No Todo items found");
+            throw new Error("No Todo item found");
         }
         return new Todo(response.rows[0])
     }

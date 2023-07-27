@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+.calendar-paged-body {
+  font-family: "Poppins", sans-serif;
+}
 .calendar-paged-body {
   display: grid;
   grid-template-columns: 80% 20%;
@@ -5,6 +9,12 @@
   justify-content: space-evenly;
   margin: 2rem;
   padding: 2rem;
+}
+@media screen and (max-width: 991px) {
+  .calendar-paged-body {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 }
 
 .container-events {
@@ -30,7 +40,8 @@
   border: none;
   width: 8rem;
   margin: 0.3rem;
-  box-shadow: 0 0 8px rgb(192, 192, 192);
+  border-radius: 15px;
+  box-shadow: 0 0 8px #50a7a9;
 }
 
 [title="Current Month"] {
@@ -38,10 +49,15 @@
   padding-block: 1rem;
 }
 .add-event {
-  background: rgb(56, 56, 106);
+  background: #50a7a9;
   color: white;
   padding: 1rem;
   margin: 0 auto;
+  border-radius: 15px;
+  transition: all 0.2s;
+}
+.add-event:hover {
+  box-shadow: 0 0 10px #50a7a9;
 }
 dialog {
   padding: 2rem 3rem;
@@ -74,12 +90,7 @@ label {
 .date-time-selector {
   display: block;
 }
-/* button {
-  display: block;
-  padding: 0.5rem;
-  border: 1px solid black;
-  border-radius: 10px;
-} */
+
 .button-section {
   display: flex;
   margin: 1rem auto;
@@ -107,7 +118,7 @@ input[type="time"] {
   font-size: 0.8rem;
 }
 .event {
-  padding: 0.8rem 0;
+  padding: 1rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -115,7 +126,7 @@ input[type="time"] {
   transition: all 0.2s;
 }
 .event:hover {
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(244, 244, 244);
 }
 .event:not(:last-child) {
   border-bottom: 1px solid rgb(219, 219, 219);
@@ -127,6 +138,7 @@ input[type="time"] {
 .color-block {
   width: 1rem;
   height: 1rem;
+  border-radius: 5px;
 }
 .radio-group {
   display: flex;
@@ -139,4 +151,27 @@ input[type="time"] {
 input[type="radio"],
 input[type="checkbox"] {
   width: 1rem;
+}
+
+.event-submit-button {
+  background-color: #50a7a9;
+  padding: 1rem 3vw;
+  border-radius: 15px;
+  color: white;
+  transition: all 0.2s;
+}
+.event-cancel-button {
+  outline: solid 2px #50a7a9;
+  padding: 1rem 3vw;
+  border-radius: 15px;
+  color: #50a7a9;
+  transition: all 0.2s;
+}
+.event-submit-button:hover,
+.event-cancel-button:hover {
+  box-shadow: 0 0 10px #50a7a9;
+}
+.no-event-header {
+  font-size: 1.3rem;
+  padding: 1rem;
 }

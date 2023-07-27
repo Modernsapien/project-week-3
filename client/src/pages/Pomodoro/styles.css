@@ -1,78 +1,89 @@
-
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .timer-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.693);
+}
+
+.buttons {
+  display: flex;
+  margin-bottom: 10px;
+  z-index: 9;
+  gap: 30px;
+}
+
+.pomo-button {
+  padding: 15px 25px;
+  background-color: transparent;
+  color: white;
+  font-size: 1.2rem;
+  text-shadow: 0 0 10px black;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  margin: 8px;
+}
+
+.pomo-button:not(:last-child) {
+  margin-right: 10px;
+}
+#startStop {
+  padding: 1.5rem 2rem;
+  font-size: 1.8rem;
+}
+.pomo-button:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.display {
+  font-size: 100px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.controls {
+  margin-bottom: 10px;
+}
+
+.carousel {
+  margin-top: 20px;
+  z-index: 9;
+  color: black;
+  text-align: center;
+}
+
+.quote {
+  max-width: 900px;
+  display: block;
+  margin: 0 auto;
+  font-size: 30px;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.693);
+}
+
+@media (max-width: 450px) {
+  #time {
+    font-size: 80px;
   }
-  
-  .timer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    margin-top:20px;
-  }
-  
-  .buttons {
-    display: flex;
-    margin-bottom: 10px;
-    z-index: 9;
-  }
-  
-  .pomo-button {
-    padding: 10px 15px;
-    background-color: antiquewhite;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); 
-    border-radius: 5%;
-    transition: all 0.3s ease; 
-    margin: 8px;
-  }
-  
-  .pomo-button:not(:last-child) {
-    margin-right: 10px;
-  }
-  
-  .pomo-button:hover {
-    opacity: 0.8;
-    transform: scale(1.05); 
-  }
-  
-  
-  .display {
-    font-size: 100px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    margin-top: 80px;
-  }
-  
-  .controls {
-    margin-bottom: 10px;
-  }
-  
-  .carousel {
-    margin-top: 20px;
-    z-index: 9;
-    color: black;
-    text-align: center;
-  }
-  
-  .quote {
-    max-width: 900px;
-    display: block;
-    margin: 0 auto; 
-    font-size: 30px;
-    font-family: 'McLaren', sans-serif;
-    color: white;
-  }
-  
-  @media (max-width: 450px) {
-    #time {
-      font-size: 80px
-    }
-  }
+}
+
+.control-button-section {
+  margin-left: 5rem;
+}

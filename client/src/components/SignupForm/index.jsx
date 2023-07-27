@@ -1,4 +1,4 @@
-import "./styles.css";
+import "../LoginForm/styles.css";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { Link } from "react-router-dom";

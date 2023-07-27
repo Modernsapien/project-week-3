@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { useAuth } from "../contexts";
+
 function AddEventForm({ showAddForm, formRef, setEvents, events }) {
-  const userId= localStorage.getItem("id")
-  const colors = ["#DBEDE0", "#006494", "#F25F5C", "#F7D6E0", "#FDCA40"];
+  const userId = localStorage.getItem("id");
+
+  const colors = ["#bdede0", "#f9aaa3", "#F7D6E0", "#f1dba0"];
   const [form, setForm] = useState({
     eventTitle: "",
     eventDescription: "",
@@ -41,7 +42,21 @@ function AddEventForm({ showAddForm, formRef, setEvents, events }) {
     if (res.ok) {
       alert("New event is added");
       const data = await res.json();
-      setEvents([...events, data]);
+      setEvents(
+        [...events, data].sort(
+          (a, b) => new Date(a.dateTime) - new Date(b.dateTime)
+        )
+      );
+      setForm({
+        eventTitle: "",
+        eventDescription: "",
+        duration: "",
+        date: "",
+        time: "",
+        color: "",
+        reminder: true,
+        userId: "",
+      });
       formRef.current.close();
     }
   }
@@ -143,8 +158,14 @@ function AddEventForm({ showAddForm, formRef, setEvents, events }) {
           <label htmlFor="reminder">Reminder</label>
         </div>
         <div className="button-section">
-          <button onClick={handleSubmit}>Submit</button>
-          <button type="button" onClick={() => formRef.current.close()}>
+          <button onClick={handleSubmit} className="event-submit-button">
+            Submit
+          </button>
+          <button
+            className="event-cancel-button"
+            type="button"
+            onClick={() => formRef.current.close()}
+          >
             Cancel
           </button>
         </div>
