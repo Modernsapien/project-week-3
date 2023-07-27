@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import EditTodoForm from "../EditTodoForm";
 
 export default function TodoListItem({
@@ -11,15 +12,6 @@ export default function TodoListItem({
 }) {
   const [show, setShow] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  // --color-1: #bdede0;
-  // --color-2: #006494;
-  // --color-3: #f25f5c;
-  // --color-4: #f7d6e0;
-  // --color-5: #f1dba0;
-  // --vivid-color-1: #92ecd4;
-  // --vivid-color-4: #f6adc3;
-  // --vivid-color-5: #f1ce6b;
-  // --navbar-background: #50a7a9;
   const colors = [
     {
       primaryColor: "#7da5dd",
@@ -104,7 +96,7 @@ export default function TodoListItem({
                 checked={isChecked}
                 onChange={handleCheckboxChange}
               />
-              <label className="form-check-label" for="flexCheckDefault">
+              <label className="form-check-label" htmlFor="flexCheckDefault">
                 Complete
               </label>
             </div>

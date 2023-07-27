@@ -6,11 +6,40 @@
   background-color: #50a7a9;
   box-shadow: 0 0 15px #f6bea0;
 }
-
-.brand {
+.nav-container {
+  margin: 0 5rem;
+  width: 100%;
+}
+.ml-auto {
+  width: 100vw;
+  margin-left: 50%;
+}
+@media screen and (max-width: 1650px) {
+  .ml-auto {
+    margin-left: 40%;
+  }
+}
+@media screen and (max-width: 1375px) {
+  .ml-auto {
+    margin-left: 30%;
+  }
+}
+@media screen and (max-width: 1170px) {
+  .ml-auto {
+    margin-left: 20%;
+  }
+}
+@media screen and (max-width: 1030px) {
+  .ml-auto {
+    margin-left: 15%;
+  }
+}
+.brand,
+.brand p {
   font-size: 22px;
   color: #fff;
   font-family: "Poppins", sans-serif;
+  /* margin-left: 100px; */
 }
 
 .linkStyle {

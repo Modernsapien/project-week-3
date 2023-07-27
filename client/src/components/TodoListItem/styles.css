@@ -40,7 +40,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  padding: 40px 100px;
+  margin: 40px 0px;
 }
 @media screen and (max-width: 1743px) {
   .task-container {

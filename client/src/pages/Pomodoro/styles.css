@@ -15,19 +15,24 @@
   border-radius: 10px;
   margin-bottom: 20px;
   margin-top: 20px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.693);
 }
 
 .buttons {
   display: flex;
   margin-bottom: 10px;
   z-index: 9;
+  gap: 30px;
 }
 
 .pomo-button {
-  padding: 10px 15px;
-  background-color: antiquewhite;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-  border-radius: 5%;
+  padding: 15px 25px;
+  background-color: transparent;
+  color: white;
+  font-size: 1.2rem;
+  text-shadow: 0 0 10px black;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
   transition: all 0.3s ease;
   margin: 8px;
 }
@@ -35,7 +40,10 @@
 .pomo-button:not(:last-child) {
   margin-right: 10px;
 }
-
+#startStop {
+  padding: 1.5rem 2rem;
+  font-size: 1.8rem;
+}
 .pomo-button:hover {
   opacity: 0.8;
   transform: scale(1.05);
@@ -45,7 +53,7 @@
   font-size: 100px;
   font-weight: bold;
   margin-bottom: 20px;
-  margin-top: 80px;
+  margin-top: 50px;
 }
 
 .controls {
@@ -67,10 +75,15 @@
   font-family: "Poppins", sans-serif;
   cursor: pointer;
   color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.693);
 }
 
 @media (max-width: 450px) {
   #time {
     font-size: 80px;
   }
+}
+
+.control-button-section {
+  margin-left: 5rem;
 }

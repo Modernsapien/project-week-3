@@ -13,6 +13,7 @@
 .dashboard-body-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  min-height: 86vh;
 }
 .study-pic {
   object-fit: cover;
