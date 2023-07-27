@@ -6,19 +6,19 @@ import { screen, render, cleanup } from '@testing-library/react';
 import matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
 
-import Home from "./index";
+import Dashboard from "./index";
 
-describe("Home page", () => {
+describe("Dashboard page", () => {
     beforeEach(() => {
-        render(<Home />)
+        render(<Dashboard />)
     })
 
     afterEach(() => {
         cleanup()
     })
 
-    it("test", () => {
-        
+    it("checks to see if everything is loading", () => {
+        expect(screen.getByText("Welcome to StudyWise."))
 
     })
 
