@@ -27,10 +27,11 @@ function Dashboard() {
   return (
     <div className="dashboard-body-container">
       <img
-        src="src/assets/revision-img.jpeg"
+        src="https://i.imgur.com/ULrJBgp.jpg"
         alt="study-pic"
         className="study-pic"
       />
+      
       <div className="directory-section">
         <h1 className="welcome-title">
           Welcome to StudyWise,{" "}
