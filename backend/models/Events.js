@@ -56,6 +56,13 @@ class Event {
     }
 
     static async create(data) {
+
+        const inputDateTime = new Date(data.dateTime)
+        inputDateTime.setHours(inputDateTime.getHours());
+        console.log('inputDateTime', inputDateTime)
+        data.dateTime = inputDateTime
+        console.log(data.eventTitle, data.dateTime)
+
         const {
             eventTitle: event_title,
             eventDescription: event_description,
@@ -65,8 +72,6 @@ class Event {
             color,
             userId: user_id
         } = data;
-
-        console.log('Data', data)
 
         const query =
             "INSERT INTO events (event_title, event_description, date_time, duration, reminder, color, user_id) " +
