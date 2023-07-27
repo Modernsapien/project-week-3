@@ -1,14 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .header {
-    height: 150px;
-    width: 100%;
-    padding-top: 50px;
-    font-size: 50px;
-    font-family: 'Poppins', sans-serif;
+  height: 150px;
+  width: 100%;
+  padding-top: 50px;
+  font-size: 50px;
+  font-family: "Poppins", sans-serif;
 }
 
 .btn {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
+.create-todo-list-button {
+  background-color: #50a7a9 !important;
+  color: white;
+}
+.create-todo-list-button:hover {
+  box-shadow: 0 0 10px #50a7a9;
+  color: white;
+}
+
+.create-todo-list-item {
+  background-color: #50a7a9;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  transition: all 0.2s;
+  outline: solid 2px #50a7a9;
+}
+.create-todo-list-item:hover,
+.create-todo-list-item:active {
+  background-color: #50a7a9 !important;
+  box-shadow: 0 0 10px #50a7a9;
+}
+.cancel-todo-list-item {
+  outline: solid 2px #50a7a9;
+  background-color: white;
+  border-radius: 10px;
+  color: #50a7a9;
+  transition: all 0.2s;
+  border: none;
+}
+.cancel-todo-list-item:hover,
+.cancel-todo-list-item:active {
+  background-color: white !important;
+  box-shadow: 0 0 10px #50a7a9;
+  color: #50a7a9;
+}
