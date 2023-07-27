@@ -41,7 +41,11 @@ const CalendarComponent = ({ events }) => {
               <div
                 className="item"
                 key={index}
-                style={{ background: item.color || "#ffffff" }}
+                style={{
+                  background: item.color || "#ffffff",
+                  borderRadius: "4px",
+                  padding: "2px",
+                }}
               >
                 <DefaultMonthlyEventItem
                   title={item.title}

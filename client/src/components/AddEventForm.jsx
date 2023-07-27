@@ -3,7 +3,8 @@ import { useState } from "react";
 
 function AddEventForm({ showAddForm, formRef, setEvents, events }) {
   const userId = localStorage.getItem("id");
-  const colors = ["#DBEDE0", "#006494", "#F25F5C", "#F7D6E0", "#FDCA40"];
+
+  const colors = ["#bdede0", "#f9aaa3", "#F7D6E0", "#f1dba0"];
   const [form, setForm] = useState({
     eventTitle: "",
     eventDescription: "",

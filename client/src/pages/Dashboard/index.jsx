@@ -32,7 +32,12 @@ function Dashboard() {
         className="study-pic"
       />
       <div className="directory-section">
-        <h1 className="welcome-title">Welcome to StudyWise.</h1>
+        <h1 className="welcome-title">
+          Welcome to StudyWise,{" "}
+          {localStorage.getItem("firstname")[0].toUpperCase() +
+            localStorage.getItem("firstname").slice(1)}
+          .
+        </h1>
         <h3 className="welcome-subtitle">Your Ultimate revision ToolBox</h3>
         {nextEvent && (
           <div className="next-event">
@@ -63,13 +68,13 @@ function Dashboard() {
             </p>
           </div>
         )}
-        <Link to="/calendar" className="nav-button">
+        <Link to="/calendar" className="nav-button color-1">
           Check Calendar
         </Link>
-        <Link to="/todo" className="nav-button">
+        <Link to="/todo" className="nav-button color-4">
           Make a Todo List for today
         </Link>
-        <Link to="/pomodoro" className="nav-button">
+        <Link to="/pomodoro" className="nav-button color-5">
           Start your revision sprint
         </Link>
       </div>

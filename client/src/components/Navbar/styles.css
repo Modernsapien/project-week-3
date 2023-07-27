@@ -1,39 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=McLaren&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=McLaren&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .navbar {
-    background: linear-gradient(0.20turn,#006494, #368fb8);
- 
+  /* background: linear-gradient(0.2turn, #b4f0c3, #63d45b); */
+  background-color: #50a7a9;
+  box-shadow: 0 0 15px #f6bea0;
 }
 
 .brand {
-    font-size: 22px;
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
 }
 
 .linkStyle {
-    font-size: 22px;
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
-    margin-left: 30px;
+  font-size: 22px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  margin-left: 30px;
+  transition: all 0.2s;
 }
 
 .linkStyle:hover {
-    color: #A0A0A0;
+  color: #7b7b7b;
 }
 
 .navbar-nav > .linkStyle.active {
-    color: #fff;
+  color: #fff;
 }
 
 .navbar img {
-    width: 70px;
-    margin: 0 auto;
+  width: 70px;
+  margin: 0 auto;
 }
 
 .icon {
-    color: #fff;
-    background-color: #fff;
+  color: #fff;
+  background-color: #fff;
 }
-
