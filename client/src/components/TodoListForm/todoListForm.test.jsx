@@ -18,7 +18,8 @@ describe("TodoListItemForm component", () => {
     })
 
     it("test", () => {
-        
+        const elem = screen.getByLabelText("Task Title")
+        expect(elem).toBeInTheDocument()
 
     })
 

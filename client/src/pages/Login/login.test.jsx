@@ -5,11 +5,11 @@ import { screen, render, cleanup } from '@testing-library/react';
 import matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
 
-import Dashboard from "./index";
+import Login from "./index";
 
-describe("Dashboard page", () => {
+describe("Login page", () => {
     beforeEach(() => {
-        render(<Dashboard />)
+        render(<Login />)
     })
 
     afterEach(() => {
@@ -17,14 +17,8 @@ describe("Dashboard page", () => {
     })
 
     it("checks to see if everything is loading", () => {
-        local = {
-            firstname: "test",
-        }
-        localStorage.setItem(JSON.stringify(local))
         elem = screen.getByRole("heading")
         expect(elem).toBeInTheDocument()
-
     })
-
-
+    
 })
