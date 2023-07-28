@@ -9,6 +9,8 @@ export default function EditTodoForm({
   handleClose,
   updateTask,
   taskObj,
+  taskList,
+  setTaskList
 }) {
   const [taskName, setTaskName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
@@ -24,16 +26,16 @@ export default function EditTodoForm({
   };
 
   useEffect(() => {
-    setTaskName(taskObj.Name);
-    setTaskDescription(taskObj.Description);
+    setTaskName(taskObj.todoTitle);
+    setTaskDescription(taskObj.todoDescription);
   }, []);
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    let tempObj = {};
-    tempObj["Name"] = taskName;
-    tempObj["Description"] = taskDescription;
-    updateTask(tempObj);
+  const handleUpdate = () => {
+    let taskObj = {};
+    taskObj["Name"] = taskName;
+    taskObj["Description"] = taskDescription;
+    updateTask(taskObj);
+    window.location.reload();
   };
 
   return (

@@ -9,9 +9,14 @@ export default function TodoListItem({
   index,
   deleteTask,
   updateListArray,
+  taskList,
+  setTaskList,
+  isFinished
 }) {
+  const userId = localStorage.getItem("id");
   const [show, setShow] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
+  
+
   const colors = [
     {
       primaryColor: "#7da5dd",
@@ -35,17 +40,6 @@ export default function TodoListItem({
     },
   ];
 
-  useEffect(() => {
-    const savedStatus = localStorage.getItem(`task_${index}_completed`);
-    if (savedStatus !== null) {
-      setIsChecked(savedStatus === "true");
-    }
-  }, [index]);
-
-  const updateLocalStorage = (checked) => {
-    localStorage.setItem(`task_${index}_completed`, checked.toString());
-  };
-
   const handleClose = () => {
     setShow(!show);
   };
@@ -54,37 +48,53 @@ export default function TodoListItem({
     updateListArray(obj, index);
   };
 
-  const handleDelete = () => {
+  const handleDelete = (e) => {
     deleteTask(index);
   };
 
-  const handleCheckboxChange = () => {
-    const updatedStatus = !isChecked;
-    setIsChecked(updatedStatus);
-    updateLocalStorage(updatedStatus);
+  const handleCheckboxChange = async () => {
+    const updatedStatus = !taskObj.isFinished; 
+
+    const apiURL = `http://localhost:3000/todos/${taskObj.todoId}`;
+    const res = await fetch(apiURL, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        isFinished: updatedStatus,
+        userId: userId,
+      }),
+    });
+
+    if (res.ok) {
+      updateTask({ ...taskObj, isFinished: updatedStatus });
+      window.location.reload(); 
+    }
   };
+
 
   return (
     <>
       <div
         className="card-wrapper mr-5"
-        style={{ opacity: isChecked ? "0.3" : "1" }}
+        style={{ opacity: taskObj.isFinished ? "0.3" : "1" }}
       >
         <div
           className="card-top"
-          style={{ "background-color": colors[index % 5].primaryColor }}
+          style={{ backgroundColor: colors[index % 5].primaryColor }}
         ></div>
         <div className="task-holder">
           <span
             className="card-header"
             style={{
-              "background-color": colors[index % 5].secondaryColor,
-              "border-radius": "5px",
+              backgroundColor: colors[index % 5].secondaryColor,
+              borderRadius: "5px",
             }}
           >
-            {taskObj.Name}
+            {taskObj.todoTitle}
           </span>
-          <p className="mt-3">{taskObj.Description}</p>
+          <p className="mt-3">{taskObj.todoDescription}</p>
 
           <div style={{ position: "absolute", left: "20px", bottom: "20px" }}>
             <div className="form-check">
@@ -93,7 +103,7 @@ export default function TodoListItem({
                 type="checkbox"
                 value=""
                 id={`flexCheckDefault-${index}`}
-                checked={isChecked}
+                checked={taskObj.isFinished}
                 onChange={handleCheckboxChange}
               />
               <label className="form-check-label" htmlFor="flexCheckDefault">
@@ -108,7 +118,7 @@ export default function TodoListItem({
               style={{
                 color: colors[index % 5].primaryColor,
                 cursor: "pointer",
-                "margin-right": "10px",
+                marginRight: "10px",
               }}
               onClick={() => setShow(true)}
             ></i>
@@ -128,6 +138,8 @@ export default function TodoListItem({
         handleClose={handleClose}
         updateTask={updateTask}
         taskObj={taskObj}
+        taskList={taskList}
+        setTaskList={setTaskList}
       />
     </>
   );
