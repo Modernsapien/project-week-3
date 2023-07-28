@@ -45,6 +45,7 @@ function Todo() {
         todoDescription: obj.Description,
         isFinished: obj.isFinished,
         userId: userId,
+        test: "123",
       }),
     });
 
@@ -60,7 +61,6 @@ function Todo() {
       setShow(false);
     }
   };
-  console.log(taskList);
   const handleClose = () => {
     setShow(!show);
   };

@@ -55,15 +55,19 @@ class TodoController {
     const { todoId } = req.params;
     const { todoTitle, todoDescription, isFinished, userId } = req.body;
     try {
+      console.log({ reqBody: req.body });
       const todo = await Todo.getByTodoId(todoId);
       console.log({ find: todo });
+      console.log({ isFinished });
       const newTodoStatus = {
         todoTitle: todoTitle || todo.todoTitle,
         todoDescription: todoDescription || todo.todoDescription,
         isFinished:
-          isFinished === todo.isFinished || isFinished === undefined
+          isFinished === undefined
             ? todo.isFinished
-            : !todo.isFinished,
+            : isFinished !== todo.isFinished
+            ? isFinished
+            : todo.isFinished,
       };
       console.log(newTodoStatus);
       const result = await todo.update(newTodoStatus);
