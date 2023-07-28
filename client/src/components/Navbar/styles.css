@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .navbar {
-  /* background: linear-gradient(0.2turn, #b4f0c3, #63d45b); */
   background-color: #50a7a9;
   box-shadow: 0 0 15px #f6bea0;
 }
@@ -56,7 +55,6 @@
 
 .navbar-nav > .linkStyle.active {
   color: #fff;
- 
 }
 
 .navbar img {
@@ -72,9 +70,3 @@
   background-color: transparent;
   border: none;
 }
- .container{
-  margin: 0px auto;
- 
- }
-
-
