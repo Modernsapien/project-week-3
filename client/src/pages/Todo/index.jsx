@@ -10,30 +10,31 @@ function Todo() {
   useEffect(() => {
     const fetchTask = async () => {
       const apiURL = `http://localhost:3000/todos/user/${userId}`;
-      const res = await fetch(apiURL)
+      const res = await fetch(apiURL);
 
       if (res.ok) {
         const data = await res.json();
         setTaskList(data);
       }
-    }
-      fetchTask();
+    };
+    fetchTask();
   }, []);
 
   const deleteTask = async (index) => {
     const apiURL = `http://localhost:3000/todos/${index}`;
     const res = await fetch(apiURL, {
-      method: "DELETE"
+      method: "DELETE",
     });
     if (res.ok) {
-      console.log(taskList)
-      const filtered = taskList.filter(task => task.todoId != index);
+      console.log(taskList);
+      const filtered = taskList.filter((task) => task.todoId != index);
       setTaskList(filtered);
     }
   };
 
   const updateListArray = async (obj, index) => {
     const apiURL = `http://localhost:3000/todos/${index}`;
+    console.log(obj);
     const res = await fetch(apiURL, {
       method: "PATCH",
       headers: {
@@ -43,18 +44,23 @@ function Todo() {
         todoTitle: obj.Name,
         todoDescription: obj.Description,
         isFinished: obj.isFinished,
-        userId: userId
+        userId: userId,
       }),
     });
 
     if (res.ok) {
       const data = await res.json();
-      taskList[index] = data;
-      setTaskList(...taskList, data);
+      const updatedTaskList = taskList.map((task) => {
+        if (task.todoId === data.id) {
+          task = data;
+        }
+        return task;
+      });
+      setTaskList(updatedTaskList);
       setShow(false);
-  }
+    }
   };
-
+  console.log(taskList);
   const handleClose = () => {
     setShow(!show);
   };
@@ -70,17 +76,18 @@ function Todo() {
         todoTitle: taskObj.Name,
         todoDescription: taskObj.Description,
         isFinished: false,
-        userId: userId
+        userId: userId,
       }),
     });
 
     if (res.ok) {
       const data = await res.json();
+
       setTaskList([...taskList, data]);
       setShow(false);
-  }
+    }
   };
-
+  // console.log(taskList);
   return (
     <>
       <div className="header text-center">
@@ -93,7 +100,7 @@ function Todo() {
         </button>
       </div>
       <div className="task-container">
-        {taskList &&
+        {taskList.length > 0 &&
           taskList.map((obj) => (
             <TodoListItem
               key={obj.todoId}
