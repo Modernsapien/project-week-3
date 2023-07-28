@@ -61,7 +61,9 @@ class TodoController {
         todoTitle: todoTitle || todo.todoTitle,
         todoDescription: todoDescription || todo.todoDescription,
         isFinished:
-          isFinished === todo.isFinished ? todo.isFinished : !todo.isFinished,
+          isFinished === todo.isFinished || isFinished === undefined
+            ? todo.isFinished
+            : !todo.isFinished,
       };
       console.log(newTodoStatus);
       const result = await todo.update(newTodoStatus);
