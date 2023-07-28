@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import EditTodoForm from "../EditTodoForm";
 
 export default function TodoListItem({
@@ -11,11 +11,9 @@ export default function TodoListItem({
   updateListArray,
   taskList,
   setTaskList,
-  isFinished
 }) {
   const userId = localStorage.getItem("id");
   const [show, setShow] = useState(false);
-  
 
   const colors = [
     {
@@ -53,27 +51,16 @@ export default function TodoListItem({
   };
 
   const handleCheckboxChange = async () => {
-    const updatedStatus = !taskObj.isFinished; 
-
-    const apiURL = `http://localhost:3000/todos/${taskObj.todoId}`;
-    const res = await fetch(apiURL, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        isFinished: updatedStatus,
-        userId: userId,
-      }),
+    const newTaskList = taskList.map((task) => {
+      if (task.todoId === index) {
+        task.isFinished = !task.isFinished;
+      }
+      return task;
     });
-
-    if (res.ok) {
-      updateTask({ ...taskObj, isFinished: updatedStatus });
-      window.location.reload(); 
-    }
+    setTaskList(newTaskList);
+    const filtered = newTaskList.filter((el) => el.todoId === index);
+    updateListArray(filtered, index);
   };
-
-
   return (
     <>
       <div
@@ -101,7 +88,6 @@ export default function TodoListItem({
               <input
                 className="form-check-input"
                 type="checkbox"
-                value=""
                 id={`flexCheckDefault-${index}`}
                 checked={taskObj.isFinished}
                 onChange={handleCheckboxChange}
