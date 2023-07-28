@@ -59,7 +59,7 @@ export default function TodoListItem({
     });
     setTaskList(newTaskList);
     const filtered = newTaskList.filter((el) => el.todoId === index);
-    updateListArray(filtered, index);
+    updateListArray(filtered[0], index);
   };
   return (
     <>
